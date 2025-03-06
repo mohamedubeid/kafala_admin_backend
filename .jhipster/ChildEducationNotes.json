@@ -1,0 +1,23 @@
+{
+  "annotations": {
+    "changelogDate": "20240717154038"
+  },
+  "applications": "*",
+  "dto": true,
+  "fields": [],
+  "name": "ChildEducationNotes",
+  "relationships": [
+    {
+      "otherEntityName": "notes",
+      "relationshipName": "notes",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "childEducationStatus",
+      "relationshipName": "childEducationStatus",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "kafalaApp": {
+    "kafeel": {
+      "home": {
+        "title": "Kafeels",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Kafeel",
+        "createOrEditLabel": "Create or edit a Kafeel",
+        "notFound": "No Kafeels found"
+      },
+      "created": "A new Kafeel is created with identifier {{ param }}",
+      "updated": "A Kafeel is updated with identifier {{ param }}",
+      "deleted": "A Kafeel is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Kafeel {{ id }}?"
+      },
+      "detail": {
+        "title": "Kafeel"
+      },
+      "id": "ID",
+      "user": "User",
+      "relChildKafeel": "Rel Child Kafeel"
+    }
+  }
+}

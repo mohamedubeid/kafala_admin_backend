@@ -1,0 +1,10 @@
+{
+  "kafalaApp": {
+    "SponsershipParty": {
+      "null": "",
+      "INDIVIDUAL": "فرد",
+      "ORGANIZATION": "منظمة",
+      "OTHER": "آخر"
+    }
+  }
+}

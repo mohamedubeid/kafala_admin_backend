@@ -1,0 +1,13 @@
+{
+  "kafalaApp": {
+    "SychologicalHealthTypes": {
+      "null": "",
+      "STABLE": "STABLE",
+      "UNSTABLE": "UNSTABLE",
+      "REQUIRES_COUNSELING": "REQUIRES_COUNSELING",
+      "REQUIRES_THERAPY": "REQUIRES_THERAPY",
+      "CRITICAL": "CRITICAL",
+      "OTHER": "OTHER"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "kafalaApp": {
+    "relChildKafeel": {
+      "status": "الحالة",
+      "changeStatus": "تغير الحالة",
+      "home": {
+        "title": "الكفالات",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Rel Child Kafeel",
+        "createOrEditLabel": "Create or edit a Rel Child Kafeel",
+        "notFound": "لا يوجد كفالات"
+      },
+      "created": "A new Rel Child Kafeel is created with identifier {{ param }}",
+      "updated": "A Rel Child Kafeel is updated with identifier {{ param }}",
+      "deleted": "A Rel Child Kafeel is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Rel Child Kafeel {{ id }}?"
+      },
+      "detail": {
+        "title": "Rel Child Kafeel"
+      },
+      "id": "ID",
+      "duration": "المدة",
+      "cost": "التكلفة",
+      "sponsorShipCost": "التكلفة",
+      "expirationDate": "تاريخ الانتهاء",
+      "startDate": "تاريخ البدء",
+      "child": "الطفل",
+      "kafeel": "كفيل"
+    }
+  }
+}

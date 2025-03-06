@@ -1,0 +1,35 @@
+{
+  "kafalaApp": {
+    "childPrticipations": {
+      "home": {
+        "title": "Child Prticipations",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Child Prticipations",
+        "createOrEditLabel": "Create or edit a Child Prticipations",
+        "notFound": "No Child Prticipations found"
+      },
+      "created": "A new Child Prticipations is created with identifier {{ param }}",
+      "updated": "A Child Prticipations is updated with identifier {{ param }}",
+      "deleted": "A Child Prticipations is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Child Prticipations {{ id }}?"
+      },
+      "detail": {
+        "title": "Child Prticipations"
+      },
+      "id": "ID",
+      "participationType": "نوع المشاركة",
+      "participationImage": "رفع صورة أو مستند",
+      "image": "Image",
+      "desceription": "وصف المشاركة",
+      "child": "Child",
+      "add": "إضافة",
+      "cancel": "إلغاء",
+      "participatipnImage": "صورة المشاركة",
+      "description": "وصف المشاركة",
+      "ACHEIVEMENT": "انجاز",
+      "EVENT": "حدث",
+      "notFound": "لا يوجد مشاراكات"
+    }
+  }
+}

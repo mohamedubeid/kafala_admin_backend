@@ -1,0 +1,13 @@
+{
+  "kafalaApp": {
+    "LastLevelOfEducation": {
+      "null": "",
+      "PRIMARY": "ابتدائي",
+      "INTERMEDIATE": "اعدادي",
+      "SECONDARY": "ثانوي",
+      "TERTIARY": "عالي",
+      "VOCATIONAL": "مهني",
+      "NONE": "لا يوجد"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "kafalaApp": {
+    "OrphanClassification": {
+      "null": "",
+  "FATHER_ORPHAN": "يتيم الأب",
+  "MOTHER_ORPHAN": "يتيم الأم",
+  "OTHER": "آخر"
+
+    }
+  }
+}

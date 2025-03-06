@@ -1,0 +1,23 @@
+{
+  "annotations": {
+    "changelogDate": "20240723115023"
+  },
+  "applications": "*",
+  "dto": true,
+  "fields": [
+    {
+      "fieldName": "type",
+      "fieldType": "String"
+    }
+  ],
+  "name": "SponsershipTypes",
+  "relationships": [
+    {
+      "otherEntityName": "relSponsershipTypes",
+      "otherEntityRelationshipName": "sponsershipType",
+      "relationshipName": "relSponsershipTypes",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ]
+}

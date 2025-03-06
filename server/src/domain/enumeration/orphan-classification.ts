@@ -1,0 +1,7 @@
+export enum OrphanClassification {
+  FATHER_ORPHAN = 'FATHER_ORPHAN',
+
+  MOTHER_ORPHAN = 'MOTHER_ORPHAN',
+  MOTHER_AND_FATHER='MOTHER_AND_FATHER',
+  OTHER = 'OTHER',
+}

@@ -1,0 +1,39 @@
+{
+  "annotations": {
+    "changelogDate": "20240717154033",
+    "paginate": "pagination"
+  },
+  "applications": "*",
+  "dto": true,
+  "fields": [
+    {
+      "fieldName": "lastLevelOfEducation",
+      "fieldType": "LastLevelOfEducation",
+      "fieldValues": "PRIMARY,SECONDARY,INTERMEDIATE,TERTIARY,VOCATIONAL,NONE"
+    },
+    {
+      "fieldName": "hoppy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastLevelOfEducationImage",
+      "fieldType": "String"
+    }
+  ],
+  "name": "ChildEducationStatus",
+  "relationships": [
+    {
+      "otherEntityName": "child",
+      "relationshipName": "child",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "childEducationNotes",
+      "otherEntityRelationshipName": "childEducationStatus",
+      "relationshipName": "childEducationNotes",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ]
+}

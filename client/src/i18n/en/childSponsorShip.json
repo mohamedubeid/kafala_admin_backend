@@ -1,0 +1,35 @@
+{
+  "kafalaApp": {
+    "childSponsorShip": {
+      "home": {
+        "title": "Child Sponsor Ships",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Child Sponsor Ship",
+        "createOrEditLabel": "Create or edit a Child Sponsor Ship",
+        "notFound": "No Child Sponsor Ships found"
+      },
+      "created": "A new Child Sponsor Ship is created with identifier {{ param }}",
+      "updated": "A Child Sponsor Ship is updated with identifier {{ param }}",
+      "deleted": "A Child Sponsor Ship is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Child Sponsor Ship {{ id }}?"
+      },
+      "detail": {
+        "title": "Child Sponsor Ship"
+      },
+      "id": "ID",
+      "name": "Name",
+      "sponserConnection": "Sponser Connection",
+      "sponsershipParty": "Sponsership Party",
+      "sponsershipDuration": "Sponsership Duration",
+      "minimumCost": "Minimum Cost",
+      "child": "Child",
+      "childSponsorShipNotes": "Child Sponsor Ship Notes",
+      "relSponsershipTypes": "Rel Sponsership Types",
+      "MONTHLY":"Monthly",
+      "QUARTERLY":"Quartarly",
+      "SEMIANNUAL":"Simiannaual",
+      "ANNUAL":"Annual"
+    }
+  }
+}

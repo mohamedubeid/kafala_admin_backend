@@ -1,0 +1,78 @@
+{
+  "annotations": {
+    "changelogDate": "20240717154031",
+    "paginate": "pagination"
+  },
+  "applications": "*",
+  "dto": true,
+  "fields": [
+    {
+      "fieldName": "healthStatus",
+      "fieldType": "HealthStatus",
+      "fieldValues": "GOOD,WEAK,POOR"
+    },
+    {
+      "fieldName": "chronicDisease",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hasDisability",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "disabilityType",
+      "fieldType": "DisabilityTypes",
+      "fieldValues": "PHYSICAL,VISUAL,HEARING,COGNITIVE,OTHER"
+    },
+    {
+      "fieldName": "disabilityImage",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "hasMentalIllness",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "mentalIllnessType",
+      "fieldType": "MentalIllnessTypes",
+      "fieldValues": "DEPRESSION,ANXIETY,BIPOLAR_DISORDER,SCHIZOPHRENIA,PTSD,OCD,OTHER"
+    },
+    {
+      "fieldName": "mentalIllnessImage",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sychologicalHealth",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "sychologicalHealthType",
+      "fieldType": "SychologicalHealthTypes",
+      "fieldValues": "STABLE,UNSTABLE,REQUIRES_COUNSELING,REQUIRES_THERAPY,CRITICAL,OTHER"
+    },
+    {
+      "fieldName": "sychologicalHealthImage",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "healthReport",
+      "fieldType": "String"
+    }
+  ],
+  "name": "ChildHealthStatus",
+  "relationships": [
+    {
+      "otherEntityName": "child",
+      "relationshipName": "child",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "childHealthNotes",
+      "otherEntityRelationshipName": "childHealthStatus",
+      "relationshipName": "childHealthNotes",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ]
+}

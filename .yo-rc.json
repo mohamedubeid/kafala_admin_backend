@@ -1,0 +1,48 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "authenticationType": "jwt",
+    "baseName": "kafala",
+    "blueprints": [
+      {
+        "name": "generator-jhipster-nodejs",
+        "version": "3.0.0"
+      }
+    ],
+    "clientFramework": "react",
+    "clientTestFrameworks": [],
+    "clientTheme": "none",
+    "creationTimestamp": 1721228620789,
+    "devServerPort": 9060,
+    "enableTranslation": true,
+    "entities": [
+      "Child",
+      "ChildHealthStatus",
+      "ChildMaritalStatus",
+      "ChildEducationStatus",
+      "ChildSponsorShip",
+      "Notes",
+      "ChildHealthNotes",
+      "ChildMaritalNotes",
+      "ChildEducationNotes",
+      "ChildSponsorShipNotes",
+      "ChildNotes",
+      "SponsershipTypes",
+      "RelSponsershipTypes",
+      "Setting",
+      "Kafeel",
+      "RelChildKafeel",
+      "ChildPrticipations"
+    ],
+    "jhipsterVersion": "8.5.0",
+    "languages": ["en", "ar-ly"],
+    "lastLiquibaseTimestamp": 1724332464000,
+    "microfrontend": null,
+    "microfrontends": [],
+    "nativeLanguage": "en",
+    "prodDatabaseType": "mysql",
+    "serverPort": null,
+    "testFrameworks": [],
+    "withAdminUi": true
+  }
+}

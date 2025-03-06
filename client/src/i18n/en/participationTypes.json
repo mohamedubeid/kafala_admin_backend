@@ -1,0 +1,10 @@
+{
+  "kafalaApp": {
+    "ParticipationTypes": {
+      "null": "",
+      "ACHEIVEMENT": "ACHEIVEMENT",
+      "EVENT": "EVENT",
+      "participationType":"Participation Type"
+    }
+  }
+}

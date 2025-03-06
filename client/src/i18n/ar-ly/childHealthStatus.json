@@ -1,0 +1,37 @@
+{
+  "kafalaApp": {
+    "childHealthStatus": {
+      "home": {
+        "title": "Child Health Statuses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Child Health Status",
+        "createOrEditLabel": "Create or edit a Child Health Status",
+        "notFound": "No Child Health Statuses found"
+      },
+      "created": "A new Child Health Status is created with identifier {{ param }}",
+      "updated": "A Child Health Status is updated with identifier {{ param }}",
+      "deleted": "A Child Health Status is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Child Health Status {{ id }}?"
+      },
+      "detail": {
+        "title": "Child Health Status"
+      },
+      "id": "ID",
+      "healthStatus": "الحالة الصحية للطفل",
+      "chronicDisease": "هل يعاني الطفل من مرض مزمن؟",
+      "hasDisability": "هل يعاني الطفل من أي نوع من الإعاقة؟",
+      "disabilityType": "نوع الإعاقة",
+      "disabilityImage": "برجاء رفع مستند الإعاقة (إن وجدت)",
+      "hasMentalIllness": "هل يعاني الطفل من مرض عقلي؟",
+      "mentalIllnessType": "نوع المرض عقلي؟",
+      "mentalIllnessImage": "برجاء رفع مستند المرض عقلي (إن وجدت)",
+      "sychologicalHealth": "هل يعاني الطفل من مرض نفسي؟",
+      "sychologicalHealthType": "نوع الصحة النفسية",
+      "sychologicalHealthImage": "برجاء رفع مستند الصحة النفسية (إن وجدت)",
+      "healthReport": "تقرير صحي",
+      "child": "الطفل",
+      "childHealthNotes": "ملاحظات الصحة للطفل"
+    }
+  }
+}

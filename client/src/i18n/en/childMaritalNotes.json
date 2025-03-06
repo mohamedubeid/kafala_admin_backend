@@ -1,0 +1,25 @@
+{
+  "kafalaApp": {
+    "childMaritalNotes": {
+      "home": {
+        "title": "Child Marital Notes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Child Marital Notes",
+        "createOrEditLabel": "Create or edit a Child Marital Notes",
+        "notFound": "No Child Marital Notes found"
+      },
+      "created": "A new Child Marital Notes is created with identifier {{ param }}",
+      "updated": "A Child Marital Notes is updated with identifier {{ param }}",
+      "deleted": "A Child Marital Notes is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Child Marital Notes {{ id }}?"
+      },
+      "detail": {
+        "title": "Child Marital Notes"
+      },
+      "id": "ID",
+      "notes": "Notes",
+      "childMaritalStatus": "Child Marital Status"
+    }
+  }
+}

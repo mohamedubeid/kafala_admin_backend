@@ -1,0 +1,32 @@
+{
+  "annotations": {
+    "changelogDate": "20240822131424",
+    "paginate": "pagination"
+  },
+  "applications": "*",
+  "dto": true,
+  "fields": [
+    {
+      "fieldName": "participationType",
+      "fieldType": "ParticipationTypes",
+      "fieldValues": "ACHEIVEMENT,EVENT"
+    },
+    {
+      "fieldName": "image",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "desceription",
+      "fieldType": "String"
+    }
+  ],
+  "name": "ChildPrticipations",
+  "relationships": [
+    {
+      "otherEntityName": "child",
+      "relationshipName": "child",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ]
+}

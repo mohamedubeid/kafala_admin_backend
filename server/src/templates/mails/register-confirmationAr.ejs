@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>كفالة غزة</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo&family=Lato&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Cairo", Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+        direction: rtl;
+      }
+      * {
+        color: #336;
+      }
+      h1 {
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 16px;
+        margin: 0;
+      }
+
+      a {
+        color: #4259CC;
+        text-decoration: none;
+      }
+      .main-container {
+        background-image: url('https://files.zadapps.info/noboogh-backend-staging.majaalis.online/email-bg.jpg');
+        background-size: cover;
+        background-position: top;
+        position: relative;
+        padding: 100px 20px 50px;
+        direction: rtl;
+      }
+
+      .container {
+        background-color: #ffffff;
+        position: relative;
+        z-index: 2;
+        max-width: 600px;
+        margin: auto;
+        padding: 16px 42px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.05);
+        margin-top: -200px;
+      }
+
+      .header {
+        padding: 20px 0;
+        text-align: center;
+      }
+      .header h1 {
+        color: #336;
+        text-align: center;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+      }
+      .header .logo {
+        max-width: 130px;
+        margin: auto;
+        margin-bottom: 20px;
+      }
+      .header .logo img {
+        max-width: 100%;
+        width: 100%;
+      }
+      .content {
+        padding: 20px 0;
+      }
+
+      .button {
+        background-color: #4259CC;
+        color: #ffffff;
+        padding: 10px 20px;
+        border-radius: 5px;
+      }
+      .welcome {
+        margin-bottom: 30px;
+      }
+      .mail-content {
+        margin-bottom: 30px;
+      }
+      .mail-text {
+        margin-bottom: 16px;
+      }
+      .mail-btn {
+        color: #fff !important;
+        background: #4259CC !important;
+        text-transform: capitalize;
+        text-decoration: none !important;
+        width: 160px;
+        font-size: 20px;
+        padding: 20px;
+        display: block;
+        margin-bottom: 30px;
+        text-align: center!important;
+      }
+      .center {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .footer {
+        margin-top: 30px;
+        text-align: center;
+      }
+      .mail-footer {
+        margin-top: 30px;
+      }
+      .mail-footer .help {
+        position: relative;
+        z-index: 2;
+        max-width: 600px;
+        margin: auto;
+        margin-bottom: 30px;
+        padding: 32px 42px;
+        border-radius: 10px;
+        border-radius: 10px;
+        background: #ffecd1;
+        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.05);
+      }
+      .mail-footer .help-title {
+        font-size: 20px;
+        color: #336;
+        text-align: center;
+        text-transform: capitalize;
+        margin-bottom: 16px;
+      }
+      .mail-footer .help-out {
+        text-align: center;
+        color: #336 !important;
+        text-transform: capitalize;
+        text-decoration: underline !important;
+        margin: auto;
+        display: block;
+      }
+      .footer-text {
+        color: #585858;
+        font-size: 14px;
+        position: relative;
+        z-index: 2;
+        max-width: 600px;
+        margin: auto;
+        text-align: center;
+      }
+      .bold {
+        font-weight: bold;
+      }
+      .link-text {
+        text-decoration: underline;
+        color: #0B7275;
+        word-break: break-all;
+      }
+
+      .social-media {
+            text-align: center;
+        }
+
+        .social-media .social-media-item {
+        width: 40px;
+        height: 40px;
+        margin: 0px 5px;
+        display: inline-block;
+      }
+      .social-media .social-media-item img {
+        max-width: 100%;
+        width: 100%;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img
+                  src="../../../../client/src/content/images/logo.svg"
+                  alt=""
+                />
+            </div>
+          <h1>تفعيل الحساب</h1>
+          <div class="content">
+            <p class="welcome">مرحبا <%= name %></p>
+            <p class="mail-content">
+              نحن سعداء بوجودك هنا! استعد لتفعيل حسابك الجديد.
+            </p>
+            <p>
+              <a class="mail-btn center" href=<%= link %>>تأكيد الحساب</a>
+            </p>
+
+          </div>
+        </div>
+      </div>
+      </div>
+
+    </div>
+  </body>
+</html>

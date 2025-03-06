@@ -1,0 +1,26 @@
+{
+  "annotations": {
+    "changelogDate": "20240819101602",
+    "paginate": "pagination"
+  },
+  "applications": "*",
+  "dto": true,
+  "fields": [],
+  "name": "Kafeel",
+  "relationships": [
+    {
+      "otherEntityName": "user",
+      "relationshipName": "user",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipWithBuiltInEntity": true
+    },
+    {
+      "otherEntityName": "relChildKafeel",
+      "otherEntityRelationshipName": "kafeel",
+      "relationshipName": "relChildKafeel",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ]
+}

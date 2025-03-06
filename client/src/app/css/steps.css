@@ -1,0 +1,33 @@
+.app-steps .checkmarkContainer{
+  width: 48px;
+  height: 48px;
+  background-color: #83E39E;
+  border-radius: 50%;
+}
+
+.app-steps .MuiStepConnector-root {
+  display: none;
+}
+.app-steps .MuiBox-root{
+  width: 90% !important;
+  margin: 30px auto;
+}
+.app-steps .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root{
+  width: 48px !important;
+  height: 48px !important;
+}
+.app-steps .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed{
+  color: #83E39E !important;
+}
+.app-steps .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
+  color: #3D7D61 !important;
+}
+.app-steps .MuiStepLabel-label,.Mui-completed{
+  color: #737373 !important;
+}
+.app-steps .Mui-active{
+  color: black;
+}
+.app-steps .MuiStepLabel-label {
+  text-align: center;
+}

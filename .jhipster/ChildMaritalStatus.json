@@ -1,0 +1,79 @@
+{
+  "annotations": {
+    "changelogDate": "20240717154032",
+    "paginate": "pagination"
+  },
+  "applications": "*",
+  "dto": true,
+  "fields": [
+    {
+      "fieldName": "orphanClassification",
+      "fieldType": "OrphanClassification",
+      "fieldValues": "FATHER_ORPHAN,MOTHER_ORPHAN,OTHER"
+    },
+    {
+      "fieldName": "fatherDateOfDeath",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "guardianName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "guardianNationalID",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "guardianRelationship",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "guardianDocument",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateOfBeathImage",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numOfSibiling",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "lostHousing",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "lostLimbs",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "lostSight",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "losthearorspeak",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "hasChronicDiseases",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "ChildMaritalStatus",
+  "relationships": [
+    {
+      "otherEntityName": "child",
+      "relationshipName": "child",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "childMaritalNotes",
+      "otherEntityRelationshipName": "childMaritalStatus",
+      "relationshipName": "childMaritalNotes",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "kafalaApp": {
+    "relChildKafeel": {
+      "status": "Status",
+      "changeStatus": "Change Status",
+      "home": {
+        "title": "sponsorships",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Rel Child Kafeel",
+        "createOrEditLabel": "Create or edit a Rel Child Kafeel",
+        "notFound": "No sponsorships found"
+      },
+      "created": "A new Rel Child Kafeel is created with identifier {{ param }}",
+      "updated": "A Rel Child Kafeel is updated with identifier {{ param }}",
+      "deleted": "A Rel Child Kafeel is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Rel Child Kafeel {{ id }}?"
+      },
+      "detail": {
+        "title": "Rel Child Kafeel"
+      },
+      "id": "ID",
+      "duration": "Duration",
+      "cost": "Cost",
+      "expirationDate": "Expiration Date",
+      "startDate": "Start Date",
+      "child": "Child",
+      "kafeel": "Kafeel"
+    }
+  }
+}

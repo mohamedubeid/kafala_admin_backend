@@ -1,0 +1,37 @@
+{
+  "kafalaApp": {
+    "childHealthStatus": {
+      "home": {
+        "title": "Child Health Statuses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Child Health Status",
+        "createOrEditLabel": "Create or edit a Child Health Status",
+        "notFound": "No Child Health Statuses found"
+      },
+      "created": "A new Child Health Status is created with identifier {{ param }}",
+      "updated": "A Child Health Status is updated with identifier {{ param }}",
+      "deleted": "A Child Health Status is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Child Health Status {{ id }}?"
+      },
+      "detail": {
+        "title": "Child Health Status"
+      },
+      "id": "ID",
+      "healthStatus": "Health Status",
+      "chronicDisease": "Chronic Disease",
+      "hasDisability": "Has Disability",
+      "disabilityType": "Disability Type",
+      "disabilityImage": "Disability Image",
+      "hasMentalIllness": "Has Mental Illness",
+      "mentalIllnessType": "Mental Illness Type",
+      "mentalIllnessImage": "Mental Illness Image",
+      "sychologicalHealth": "Sychological Health",
+      "sychologicalHealthType": "Sychological Health Type",
+      "sychologicalHealthImage": "Sychological Health Image",
+      "healthReport": "Health Report",
+      "child": "Child",
+      "childHealthNotes": "Child Health Notes"
+    }
+  }
+}

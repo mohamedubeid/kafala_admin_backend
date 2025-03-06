@@ -1,0 +1,15 @@
+export enum MentalIllnessTypes {
+  DEPRESSION = 'DEPRESSION',
+
+  ANXIETY = 'ANXIETY',
+
+  BIPOLAR_DISORDER = 'BIPOLAR_DISORDER',
+
+  SCHIZOPHRENIA = 'SCHIZOPHRENIA',
+
+  PTSD = 'PTSD',
+
+  OCD = 'OCD',
+
+  OTHER = 'OTHER',
+}

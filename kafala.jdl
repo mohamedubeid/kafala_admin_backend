@@ -1,0 +1,243 @@
+// entities
+@paginate(pagination)
+entity Child {
+    firstName String
+    imageUrl String
+    nationalId String
+    nationalImage String
+    birthCertificate String
+    email String
+    fatherName String
+    fatherPhone String
+    brotherCode String
+    motherName String
+    familyName String
+    gender Gender
+    age Integer
+    vedio String
+    description TextBlob
+    address String
+    score Float
+}
+@paginate(pagination)
+entity Kafeel {
+
+}
+
+@paginate(pagination)
+entity RelChildKafeel{
+   duration SponsershipDuration
+   cost Float
+   expirationDate LocalDate
+   startDate LocalDate
+   status RelChildKafeelStatus
+}
+
+enum RelChildKafeelStatus{
+    PENDING
+    ACCEPTED
+    REJECTED
+}
+@paginate(pagination)
+entity ChildHealthStatus {
+    healthStatus HealthStatus
+    chronicDisease Boolean
+    hasDisability Boolean
+    disabilityType DisabilityTypes
+    disabilityImage String
+    hasMentalIllness Boolean
+    mentalIllnessType MentalIllnessTypes
+    mentalIllnessImage String
+    sychologicalHealth Boolean
+    sychologicalHealthType SychologicalHealthTypes
+    sychologicalHealthImage String
+    healthReport String
+}
+
+@paginate(pagination)
+entity ChildMaritalStatus {
+  orphanClassification  OrphanClassification
+  fatherDateOfDeath LocalDate
+  guardianName String
+  guardianNationalID String
+  guardianRelationship String
+  guardianDocument String
+  dateOfBeathImage String
+  numOfSibiling Integer
+  lostHousing Boolean
+  lostLimbs Boolean
+  lostSight Boolean
+  Losthearorspeak Boolean
+  hasChronicDiseases Boolean
+}
+
+@paginate(pagination)
+entity ChildEducationStatus {
+  lastLevelOfEducation  LastLevelOfEducation
+  hoppy String
+  lastLevelOfEducationImage String
+}
+
+@paginate(pagination)
+entity ChildSponsorShip {
+  name  String
+  sponserConnection SponserConnection
+  sponsershipParty SponsershipParty
+  sponsershipDuration SponsershipDuration
+  minimumCost Float
+}
+
+@paginate(pagination)
+entity ChildPrticipations {
+  participationType ParticipationTypes
+  image String
+  desceription String
+}
+
+
+entity Notes {
+   note TextBlob
+}
+
+entity ChildNotes {
+
+}
+
+entity ChildHealthNotes {
+
+}
+
+entity ChildMaritalNotes {
+
+}
+
+entity ChildEducationNotes {
+
+}
+
+entity ChildSponsorShipNotes {
+
+}
+entity SponsershipTypes{
+    type String
+}
+entity RelSponsershipTypes{
+
+}
+entity Setting{
+    key String
+    value TextBlob
+}
+
+enum HealthStatus {
+  GOOD
+  WEAK
+  POOR
+}
+
+// enums
+enum Gender {
+    MALE,
+    FEMALE
+}
+
+enum DisabilityTypes {
+    PHYSICAL,
+    VISUAL,
+    HEARING,
+    COGNITIVE,
+    OTHER
+}
+
+enum MentalIllnessTypes {
+    DEPRESSION,
+    ANXIETY,
+    BIPOLAR_DISORDER,
+    SCHIZOPHRENIA,
+    PTSD,
+    OCD,
+    OTHER
+}
+
+enum OrphanClassification {
+    FATHER_ORPHAN,
+    MOTHER_ORPHAN,
+    OTHER
+}
+
+ enum LastLevelOfEducation {
+    PRIMARY,
+    SECONDARY,
+    INTERMEDIATE,
+    TERTIARY,
+    VOCATIONAL,
+    NONE
+}
+
+enum SponserConnection {
+    RELATIVE ,
+    ORGANIZATION,
+    OTHER
+}
+
+enum SponsershipParty {
+    INDIVIDUAL,
+    ORGANIZATION,
+    OTHER
+}
+
+enum SponsershipDuration {
+    MONTHLY
+    QUARTERLY
+    SEMIANNUAL
+    ANNUAL
+}
+
+enum SponsershipType {
+    EDUCATIONAL,
+    HEALTH,
+    FINANCIAL,
+    SOCIAL,
+    OTHER
+}
+
+enum SychologicalHealthTypes {
+    STABLE,
+    UNSTABLE,
+    REQUIRES_COUNSELING,
+    REQUIRES_THERAPY,
+    CRITICAL,
+    OTHER
+}
+enum ParticipationTypes{
+    ACHEIVEMENT
+    EVENT
+}
+
+// Relationships
+relationship OneToOne {
+ Child{user} to User with builtInEntity
+ Kafeel{user} to User with builtInEntity
+ ChildHealthStatus{child} to Child
+ ChildMaritalStatus{child} to Child
+ ChildEducationStatus{child} to Child
+ ChildSponsorShip{child} to Child
+ ChildHealthNotes{notes} to Notes
+ ChildMaritalNotes{notes} to Notes
+ ChildNotes{notes} to Notes
+ ChildEducationNotes{notes} to Notes
+ ChildSponsorShipNotes{notes} to Notes
+}
+
+relationship OneToMany {
+    ChildHealthStatus to ChildHealthNotes{childHealthStatus}
+    ChildMaritalStatus to ChildMaritalNotes{childMaritalStatus}
+    Child to ChildNotes{child}
+    ChildEducationStatus to ChildEducationNotes{childEducationStatus}
+    ChildSponsorShip to ChildSponsorShipNotes{childSponsorShip}
+    SponsershipTypes to RelSponsershipTypes{sponsershipType}
+    ChildSponsorShip to RelSponsershipTypes{ChildSponsorShip}
+    Child to RelChildKafeel{child}
+    Kafeel to RelChildKafeel{kafeel}
+    Child to ChildPrticipations{child}
+}

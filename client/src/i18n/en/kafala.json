@@ -1,0 +1,29 @@
+{
+  "kafala": {
+    "Child": {
+      "created": "A new Child is created with identifier {{ param }}",
+      "updated": "A Child is updated with identifier {{ param }}",
+      "deleted": "A Child is deleted with identifier {{ param }}",
+      "saved": "A Child data has been saved",
+      "delete": {
+        "question": "Are you sure you want to delete Child {{ id }}?"
+      },
+      "detail": {
+        "title": "Child"
+      }
+    },
+    "ChildPrticipations": {
+      "created": "Saved Successfully"
+    },
+    "Setting": {
+      "created": "Saved successfully"
+    },
+    "RelChildKafeel": {
+      "created": "Saved successfully"
+    },
+    "User": {
+      "created": "Saved successfully",
+      "deleted": "Deleted successfully"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "kafala": {
+    "Child": {
+      "created": "تم حفظ بيانات الطفل",
+      "updated": "تم تحديث طفل ",
+      "deleted": "تم حذف طفل ",
+      "saved": "تم حفظ بيانات الطفل",
+      "delete": {
+        "question": "هل أنت متأكد أنك تريد حذف الطفل {{ id }}؟"
+      },
+      "detail": {
+        "title": "الطفل"
+      }
+    },
+    "ChildPrticipations": {
+      "created": "تم الحفظ بنجاح"
+    },
+    "Setting": {
+      "created": "تم الحفظ بنجاح"
+    },
+    "RelChildKafeel": {
+      "created": "تم الحفظ بنجاح"
+    },
+    "User": {
+      "created": "تم الحفظ بنجاح",
+      "deleted": "تم الحذف بنجاح"
+    }
+  }
+}

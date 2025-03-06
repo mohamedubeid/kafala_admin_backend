@@ -1,0 +1,40 @@
+{
+  "kafalaApp": {
+    "childMaritalStatus": {
+      "home": {
+        "title": "Child Marital Statuses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Child Marital Status",
+        "createOrEditLabel": "Create or edit a Child Marital Status",
+        "notFound": "No Child Marital Statuses found"
+      },
+      "created": "A new Child Marital Status is created with identifier {{ param }}",
+      "updated": "A Child Marital Status is updated with identifier {{ param }}",
+      "deleted": "A Child Marital Status is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Child Marital Status {{ id }}?"
+      },
+      "detail": {
+        "title": "Child Marital Status"
+      },
+      "id": "ID",
+      "orphanClassification": "تصنيف اليتيم",
+      "fatherDateOfDeath": "تاريخ الوفاه",
+      "dateOfBeathImage": "برجاء رفع شهادة الوفاه (إن وجدت)",
+      "numOfSibiling": "عدد الأخوة والأخوات",
+      "child": "الطفل",
+      "childMaritalNotes": "ملاحظات الحالة الاجتماعية للطفل",
+      "guardianName": "اسم الوصي",
+      "guardianNationalID": "رقم الهوية",
+      "guardianRelationship": "صلة الوصي",
+      "guardianDocument": "وثيقة الوصي (ان وجدت)",
+      "lostHousing": "فقد السكن",
+      "lostLimbs": "فقد اطرافه",
+      "lostSight": "فقد بصره",
+      "Lostabilitytohearorspeak": "  فقد القدرة علي السمع او التحدث",
+      "chronicDiseases": "  لديه امراض مزمنة",
+      "newHarm": "اضافة ضرر اخر",
+      "childHarms": "اضرار اخري"
+    }
+  }
+}

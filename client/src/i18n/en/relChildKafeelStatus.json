@@ -1,0 +1,10 @@
+{
+  "kafalaApp": {
+    "RelChildKafeelStatus": {
+      "null": "",
+      "PENDING": "PENDING",
+      "ACCEPTED": "ACCEPTED",
+      "REJECTED": "REJECTED"
+    }
+  }
+}

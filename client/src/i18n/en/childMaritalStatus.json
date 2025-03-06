@@ -1,0 +1,40 @@
+{
+  "kafalaApp": {
+    "childMaritalStatus": {
+      "home": {
+        "title": "Child Marital Statuses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Child Marital Status",
+        "createOrEditLabel": "Create or edit a Child Marital Status",
+        "notFound": "No Child Marital Statuses found"
+      },
+      "created": "A new Child Marital Status is created with identifier {{ param }}",
+      "updated": "A Child Marital Status is updated with identifier {{ param }}",
+      "deleted": "A Child Marital Status is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Child Marital Status {{ id }}?"
+      },
+      "detail": {
+        "title": "Child Marital Status"
+      },
+      "id": "ID",
+      "orphanClassification": "Orphan Classification",
+      "fatherDateOfDeath": "Father Date Of Death",
+      "dateOfBeathImage": "Date Of Beath Image",
+      "numOfSibiling": "Num Of Sibiling",
+      "child": "Child",
+      "childMaritalNotes": "Child Marital Notes",
+      "guardianName":"Guardian Name",
+      "guardianNationalID":"Guardian National ID",
+      "guardianRelationship":"Guardian Relationship",
+      "guardianDocument":"Guardian Document",
+      "lostHousing":"Lost housing",
+      "lostLimbs": "Lost Limbs",
+      "lostSight":"Lost sight",
+      "Lostabilitytohearorspeak":" Lost the ability tohear or speak",
+      "chronicDiseases":" Has chronic diseases",
+      "newHarm":"Add more harms",
+      "childHarms":"Harms"
+    }
+  }
+}

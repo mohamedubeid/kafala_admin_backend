@@ -1,0 +1,12 @@
+{
+  "kafalaApp": {
+    "SponsershipType": {
+      "null": "",
+      "EDUCATIONAL": "تعليمية",
+      "HEALTH": "صحية",
+      "FINANCIAL": "مالية",
+      "SOCIAL": "اجتماعية",
+      "OTHER": "آخرى"
+    }
+  }
+}

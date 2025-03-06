@@ -1,0 +1,28 @@
+{
+  "kafalaApp": {
+    "childEducationStatus": {
+      "home": {
+        "title": "Child Education Statuses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Child Education Status",
+        "createOrEditLabel": "Create or edit a Child Education Status",
+        "notFound": "No Child Education Statuses found"
+      },
+      "created": "A new Child Education Status is created with identifier {{ param }}",
+      "updated": "A Child Education Status is updated with identifier {{ param }}",
+      "deleted": "A Child Education Status is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Child Education Status {{ id }}?"
+      },
+      "detail": {
+        "title": "Child Education Status"
+      },
+      "id": "ID",
+      "lastLevelOfEducation": "Last Level Of Education",
+      "hoppy": "Hoppy",
+      "lastLevelOfEducationImage": "Last Level Of Education Image",
+      "child": "Child",
+      "childEducationNotes": "Child Education Notes"
+    }
+  }
+}

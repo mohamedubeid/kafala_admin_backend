@@ -1,0 +1,11 @@
+{
+  "kafalaApp": {
+    "SponsershipDuration": {
+      "null": "",
+      "SHORT_TERM": "قصير الأمد",
+      "LONG_TERM": "طويل الأمد",
+      "PERMANENT": "دائم",
+      "OTHER": "آخر"
+    }
+  }
+}

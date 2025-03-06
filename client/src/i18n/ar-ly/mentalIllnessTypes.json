@@ -1,0 +1,14 @@
+{
+  "kafalaApp": {
+    "MentalIllnessTypes": {
+      "null": "",
+      "DEPRESSION": "اكتئاب",
+      "ANXIETY": "قلق",
+      "BIPOLAR_DISORDER": "اضطراب ثنائي القطب",
+      "SCHIZOPHRENIA": "فصام",
+      "PTSD": "اضطراب ما بعد الصدمة",
+      "OCD": "اضطراب الوسواس القهري",
+      "OTHER": "آخر"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "annotations": {
+    "changelogDate": "20240819101603",
+    "paginate": "pagination"
+  },
+  "applications": "*",
+  "dto": true,
+  "fields": [
+    {
+      "fieldName": "duration",
+      "fieldType": "SponsershipDuration",
+      "fieldValues": "MONTHLY,QUARTERLY,SEMIANNUAL,ANNUAL"
+    },
+    {
+      "fieldName": "cost",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "expirationDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "RelChildKafeelStatus",
+      "fieldValues": "PENDING,ACCEPTED,REJECTED"
+    }
+  ],
+  "name": "RelChildKafeel",
+  "relationships": [
+    {
+      "otherEntityName": "child",
+      "relationshipName": "child",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "kafeel",
+      "relationshipName": "kafeel",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ]
+}

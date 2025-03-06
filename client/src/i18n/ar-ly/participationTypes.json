@@ -1,0 +1,9 @@
+{
+  "kafalaApp": {
+    "ParticipationTypes": {
+      "null": "",
+      "ACHEIVEMENT": "إنجاز",
+      "EVENT": "حدث"
+    }
+  }
+}

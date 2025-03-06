@@ -1,0 +1,13 @@
+{
+  "kafalaApp": {
+    "SponserConnection": {
+      "null": "",
+      "DIRECT": "مباشر",
+      "INDIRECT": "غير مباشر",
+      "Association": "جمعية",
+      "RELATIVE": "قريب",
+      "ORGANIZATION": "منظمة",
+      "OTHER": "آخر"
+    }
+  }
+}

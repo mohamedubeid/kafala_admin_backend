@@ -1,0 +1,33 @@
+{
+  "userManagement": {
+    "home": {
+      "title": "المستخدمين",
+      "refreshListLabel": "تحديث القائمة",
+      "createLabel": "إنشاء مستخدم جديد",
+      "createOrEditLabel": "إنشاء أو تعديل مستخدم"
+    },
+    "created": "تم إنشاء مستخدم جديد بمعرف {{ param }}",
+    "updated": "تم تحديث المستخدم بمعرف {{ param }}",
+    "deleted": "تم حذف المستخدم بمعرف {{ param }}",
+    "delete": {
+      "question": "هل أنت متأكد أنك تريد حذف المستخدم {{ login }}؟"
+    },
+    "detail": {
+      "title": "المستخدم"
+    },
+    "login": "تسجيل الدخول",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "email": "البريد الإلكتروني",
+    "activated": "مفعل",
+    "deactivated": "معطل",
+    "profiles": "الملفات الشخصية",
+    "langKey": "اللغة",
+    "createdBy": "تم الإنشاء بواسطة",
+    "createdDate": "تاريخ الإنشاء",
+    "lastModifiedBy": "تم التعديل بواسطة",
+    "lastModifiedDate": "تاريخ التعديل",
+    "emailExists": "هذا البريد الإلكتروني مسجل بالفعل في النظام",
+    "error": "حدث خطأ أثناء حفظ المستخدم"
+  }
+}

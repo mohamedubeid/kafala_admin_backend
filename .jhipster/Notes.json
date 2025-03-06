@@ -1,0 +1,16 @@
+{
+  "annotations": {
+    "changelogDate": "20240717154035"
+  },
+  "applications": "*",
+  "dto": true,
+  "fields": [
+    {
+      "fieldName": "note",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "name": "Notes",
+  "relationships": []
+}

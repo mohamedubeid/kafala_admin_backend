@@ -1,0 +1,25 @@
+{
+  "kafalaApp": {
+    "childHealthNotes": {
+      "home": {
+        "title": "Child Health Notes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Child Health Notes",
+        "createOrEditLabel": "Create or edit a Child Health Notes",
+        "notFound": "No Child Health Notes found"
+      },
+      "created": "A new Child Health Notes is created with identifier {{ param }}",
+      "updated": "A Child Health Notes is updated with identifier {{ param }}",
+      "deleted": "A Child Health Notes is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Child Health Notes {{ id }}?"
+      },
+      "detail": {
+        "title": "Child Health Notes"
+      },
+      "id": "ID",
+      "notes": "Notes",
+      "childHealthStatus": "Child Health Status"
+    }
+  }
+}

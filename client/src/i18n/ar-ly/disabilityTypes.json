@@ -1,0 +1,12 @@
+{
+  "kafalaApp": {
+    "DisabilityTypes": {
+      "null": "",
+      "PHYSICAL": "جسدي",
+      "VISUAL": "بصري",
+      "HEARING": "سمعي",
+      "COGNITIVE": "معرفي",
+      "OTHER": "آخر"
+    }
+  }
+}

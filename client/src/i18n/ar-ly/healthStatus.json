@@ -1,0 +1,10 @@
+{
+  "kafalaApp": {
+    "HealthStatus": {
+      "null": "",
+      "GOOD": "جيد",
+      "WEAK": "ضعيف",
+      "POOR": "رديء"
+    }
+  }
+}

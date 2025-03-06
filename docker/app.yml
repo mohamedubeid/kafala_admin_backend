@@ -1,0 +1,15 @@
+name: kafala
+services:
+  app:
+    build: ..
+    environment:
+      - BACKEND_ENV=prod
+    ports:
+      - 8080:8080
+    depends_on:
+      mysql:
+        condition: service_healthy
+  mysql:
+    extends:
+      file: ./mysql.yml
+      service: mysql

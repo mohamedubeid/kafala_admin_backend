@@ -1,0 +1,25 @@
+{
+  "kafalaApp": {
+    "childEducationNotes": {
+      "home": {
+        "title": "Child Education Notes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Child Education Notes",
+        "createOrEditLabel": "Create or edit a Child Education Notes",
+        "notFound": "No Child Education Notes found"
+      },
+      "created": "A new Child Education Notes is created with identifier {{ param }}",
+      "updated": "A Child Education Notes is updated with identifier {{ param }}",
+      "deleted": "A Child Education Notes is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Child Education Notes {{ id }}?"
+      },
+      "detail": {
+        "title": "Child Education Notes"
+      },
+      "id": "ID",
+      "notes": "Notes",
+      "childEducationStatus": "Child Education Status"
+    }
+  }
+}

@@ -1,0 +1,126 @@
+#  Template NodeJS build
+
+#  This template allows you to validate your NodeJS code.
+#  The workflow allows running tests and code linting on the default branch.
+
+image: node:20
+definitions:
+  services:
+    docker:
+      memory: 1024
+pipelines:
+  default:
+    - parallel:
+        - step:
+            name: Build
+            size: 2x
+            script:
+              - apt-get update
+              - apt-get install zip
+              - npm install
+              - cd server
+              - npm run build
+              - cd ..
+              - cd client
+              - npm run build
+  branches:
+    testing:
+      - step:
+          name: Build
+          size: 2x
+          script:
+            - apt-get update
+            - apt-get install zip
+            - npm install
+            - cd server
+            - npm run build
+            - cd ..
+            - cd client
+            - npm run build
+            - cd ..
+            - cd server
+            - zip -r application.zip dist e2e scripts src test sonar-project.properties .env .prettierrc.js .server.eslintignore .server.eslintrc.json nest-cli.json package-lock.json package.json Procfile tsconfig.build.json tsconfig.json webpack.server.prod.config.js 
+            - mv application.zip ../
+          artifacts:
+            - application.zip
+      - step:
+          name: deploy to testing
+          deployment: testing
+          script:
+            - pipe: atlassian/aws-elasticbeanstalk-deploy:1.4.0
+              variables:
+                AWS_ACCESS_KEY_ID: 'AKIAZO7VVEEALBQLTBY4'
+                AWS_SECRET_ACCESS_KEY: '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'
+                AWS_DEFAULT_REGION: 'us-east-2'
+                APPLICATION_NAME: 'Kafala-Testing'
+                ENVIRONMENT_NAME: 'Kafala-Testing-env'
+                ZIP_FILE: 'application.zip'
+                VERSION_LABEL: 'kafala testing-version-v$BITBUCKET_BUILD_NUMBER'
+                S3_BUCKET: 'kafala-build'
+    staging:
+      - step:
+          name: Build
+          size: 2x
+          script:
+            - apt-get update
+            - apt-get install zip
+            - npm install
+            - cd server
+            - npm run build
+            - cd ..
+            - cd client
+            - npm run build
+            - cd ..
+            - cd server
+            - zip -r application.zip dist e2e scripts src test sonar-project.properties .env .prettierrc.js .server.eslintignore .server.eslintrc.json nest-cli.json package-lock.json package.json Procfile tsconfig.build.json tsconfig.json webpack.server.prod.config.js 
+            - mv application.zip ../
+          artifacts:
+            - application.zip
+      - step:
+          name: deploy to staging
+          deployment: staging
+          script:
+            - pipe: atlassian/aws-elasticbeanstalk-deploy:1.4.0
+              variables:
+                AWS_ACCESS_KEY_ID: 'AKIARSU7KNIP7HN73FHB'
+                AWS_SECRET_ACCESS_KEY: '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'
+                AWS_DEFAULT_REGION: 'us-east-1'
+                APPLICATION_NAME: 'ekfal-staging'
+                ENVIRONMENT_NAME: 'Ekfal-staging-env-2'
+                ZIP_FILE: 'application.zip'
+                VERSION_LABEL: 'kafala staging-version-v$BITBUCKET_BUILD_NUMBER'
+                S3_BUCKET: 'ekfal-build'
+    main:
+      - step:
+          name: Build
+          size: 2x
+          script:
+            - apt-get update
+            - apt-get install zip
+            - npm install
+            - cd server
+            - npm run build
+            - cd ..
+            - cd client
+            - npm run build
+            - cd ..
+            - cd server
+            - zip -r application.zip dist e2e scripts src test sonar-project.properties .env .prettierrc.js .server.eslintignore .server.eslintrc.json nest-cli.json package-lock.json package.json Procfile tsconfig.build.json tsconfig.json webpack.server.prod.config.js 
+            - mv application.zip ../
+          artifacts:
+            - application.zip
+      - step:
+          name: deploy to Production
+          trigger: manual
+          deployment: Production
+          script:
+            - pipe: atlassian/aws-elasticbeanstalk-deploy:1.4.0
+              variables:
+                AWS_ACCESS_KEY_ID: 'AKIARSU7KNIP7HN73FHB'
+                AWS_SECRET_ACCESS_KEY: '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'
+                AWS_DEFAULT_REGION: 'us-east-1'
+                APPLICATION_NAME: 'ekfal'
+                ENVIRONMENT_NAME: 'Ekfal-env'
+                ZIP_FILE: 'application.zip'
+                VERSION_LABEL: 'kafala production-version-v$BITBUCKET_BUILD_NUMBER'
+                S3_BUCKET: 'build-main'

@@ -1,0 +1,56 @@
+{
+  "annotations": {
+    "changelogDate": "20240717154034",
+    "paginate": "pagination"
+  },
+  "applications": "*",
+  "dto": true,
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sponserConnection",
+      "fieldType": "SponserConnection",
+      "fieldValues": "RELATIVE,ORGANIZATION,OTHER"
+    },
+    {
+      "fieldName": "sponsershipParty",
+      "fieldType": "SponsershipParty",
+      "fieldValues": "INDIVIDUAL,ORGANIZATION,OTHER"
+    },
+    {
+      "fieldName": "sponsershipDuration",
+      "fieldType": "SponsershipDuration",
+      "fieldValues": "MONTHLY,QUARTERLY,SEMIANNUAL,ANNUAL"
+    },
+    {
+      "fieldName": "minimumCost",
+      "fieldType": "Float"
+    }
+  ],
+  "name": "ChildSponsorShip",
+  "relationships": [
+    {
+      "otherEntityName": "child",
+      "relationshipName": "child",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "childSponsorShipNotes",
+      "otherEntityRelationshipName": "childSponsorShip",
+      "relationshipName": "childSponsorShipNotes",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "relSponsershipTypes",
+      "otherEntityRelationshipName": "childSponsorShip",
+      "relationshipName": "relSponsershipTypes",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ]
+}

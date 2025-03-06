@@ -1,0 +1,13 @@
+export enum LastLevelOfEducation {
+  PRIMARY = 'PRIMARY',
+
+  SECONDARY = 'SECONDARY',
+
+  INTERMEDIATE = 'INTERMEDIATE',
+
+  TERTIARY = 'TERTIARY',
+
+  VOCATIONAL = 'VOCATIONAL',
+
+  NONE = 'NONE',
+}

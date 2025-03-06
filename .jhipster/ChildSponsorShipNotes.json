@@ -1,0 +1,23 @@
+{
+  "annotations": {
+    "changelogDate": "20240717154039"
+  },
+  "applications": "*",
+  "dto": true,
+  "fields": [],
+  "name": "ChildSponsorShipNotes",
+  "relationships": [
+    {
+      "otherEntityName": "notes",
+      "relationshipName": "notes",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "childSponsorShip",
+      "relationshipName": "childSponsorShip",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ]
+}
