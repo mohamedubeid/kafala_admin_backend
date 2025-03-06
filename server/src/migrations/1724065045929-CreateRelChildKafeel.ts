@@ -41,7 +41,7 @@ export class CreateRelChildKafeel1724065045929 implements MigrationInterface {
           {
             name: 'expiration_date',
             type: 'timestamp',
-            isNullable: false,
+            isNullable: true,
           },
         ],
       }),
