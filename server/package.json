@@ -25,7 +25,11 @@
     "test:e2e": "jest --silent --force-exit --coverage --config ./e2e/jest.e2e.config.json",
     "test:watch": "jest --watch",
     "typeorm:migrate": "node --require ts-node/register ../node_modules/typeorm/cli.js migration:run --config src/orm.config.ts",
-    "webpack:prod": "npm run clean && webpack --config webpack.server.prod.config.js && npm run copy-resources"
+    "webpack:prod": "npm run clean && webpack --config webpack.server.prod.config.js && npm run copy-resources",
+    "typeorm:generate": "node --require ts-node/register ../node_modules/typeorm/cli.js migration:generate --config src/orm.config.ts -n",
+    "typeorm:revert": "node --require ts-node/register ../node_modules/typeorm/cli.js migration:revert --config src/orm.config.ts",
+    "typeorm:drop": "node --require ts-node/register ../node_modules/typeorm/cli.js schema:drop --config src/orm.config.ts",
+    "typeorm:query": "node --require ts-node/register ../node_modules/typeorm/cli.js query --config src/orm.config.ts"
   },
   "jest": {
     "coverageDirectory": "coverage",
