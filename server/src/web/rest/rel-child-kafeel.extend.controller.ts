@@ -135,7 +135,7 @@ export class RelChildKafeelExtendedController {
   }
 
   @Get('/web/getTotalChildSponsored')
-  @Roles(RoleType.GUARANTOR)
+  @Roles(RoleType.GUARANTOR, RoleType.CHILD_GUARDIAN)
   @ApiResponse({
     status: 200,
     description: 'The found record',
