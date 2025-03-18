@@ -161,7 +161,9 @@ export class AuthService {
 
     userFind.firstName = newUserInfo.firstName;
     userFind.lastName = newUserInfo.lastName;
-    userFind.email = newUserInfo.email;
+    userFind.mobile = newUserInfo.mobile;
+    userFind.national_id = newUserInfo.national_id;
+    userFind.attachment = newUserInfo.attachment;
     userFind.langKey = newUserInfo.langKey;
     await this.userService.save(userFind, userLogin);
     return;
