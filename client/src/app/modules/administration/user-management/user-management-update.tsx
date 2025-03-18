@@ -127,6 +127,7 @@ export const UserManagementUpdate = () => {
               /> */}
               <ValidatedField
                 name="email"
+                disabled
                 label={translate('global.form.email.label')}
                 type="email"
                 className="text-start"
@@ -212,7 +213,7 @@ export const UserManagementUpdate = () => {
                   </option>
                 ))}
               </ValidatedField>
-              <ValidatedField type="select" name="authorities" multiple label={translate('userManagement.profiles')}>
+              <ValidatedField disabled type="select" name="authorities" multiple label={translate('userManagement.profiles')}>
                 {authorities.map(role => (
                   <option value={role} key={role}>
                     {role}
