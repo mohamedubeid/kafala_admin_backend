@@ -226,7 +226,8 @@ export class ChildExtendedController {
   }
 
   @Put('/addUpdateChild')
-  @Roles(RoleType.USER, RoleType.ADMIN, RoleType.App_MANAGER, RoleType.ORGANIZATIONAL)
+  @UseGuards(AuthGuard)
+  @Roles(RoleType.USER, RoleType.ADMIN, RoleType.App_MANAGER, RoleType.ORGANIZATIONAL, RoleType.CHILD_GUARDIAN)
   @ApiOperation({ summary: 'Update child' })
   @ApiResponse({
     status: 200,
