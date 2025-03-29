@@ -199,7 +199,7 @@ const StepFive = ({ child, handleNext }: ChildEducationProps) => {
         <ValidatedField
           label={`${translate('kafalaApp.childSponsorShip.sponsershipDuration')} *`}
           id="child-sponsor-ship-sponsershipDuration"
-          name="SponsershipDuration"
+          name="sponsershipDuration"
           data-cy="sponsershipDuration"
           type="text"
           readOnly={true}
