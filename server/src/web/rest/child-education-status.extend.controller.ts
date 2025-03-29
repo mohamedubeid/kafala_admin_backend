@@ -81,7 +81,7 @@ export class ChildEducationStatusExtendedController {
     return created;
   }
   @Put('/addUpdateChildEdicationStatus')
-  @Roles(RoleType.USER, RoleType.ADMIN)
+  @Roles(RoleType.USER, RoleType.ADMIN, RoleType.CHILD_GUARDIAN)
   @ApiOperation({ summary: 'Update child' })
   @ApiResponse({
     status: 200,

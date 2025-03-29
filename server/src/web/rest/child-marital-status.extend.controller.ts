@@ -81,7 +81,7 @@ export class ChildMaritalStatusExtendedController {
     return created;
   }
   @Put('/addUpdateChildMirtalStatus')
-  @Roles(RoleType.USER, RoleType.ADMIN)
+  @Roles(RoleType.USER, RoleType.ADMIN, RoleType.CHILD_GUARDIAN)
   @ApiOperation({ summary: 'Update child' })
   @ApiResponse({
     status: 200,

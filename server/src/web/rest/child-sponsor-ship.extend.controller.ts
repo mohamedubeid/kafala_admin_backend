@@ -71,7 +71,7 @@ export class ChildSponsorShipExtendedController {
 
 
   @Put('/addUpdateChildSponsorship')
-  @Roles(RoleType.USER, RoleType.ADMIN,RoleType.App_MANAGER,RoleType.ORGANIZATIONAL)
+  @Roles(RoleType.USER, RoleType.ADMIN,RoleType.App_MANAGER,RoleType.ORGANIZATIONAL, RoleType.CHILD_GUARDIAN)
   @ApiOperation({ summary: 'Update child' })
   @ApiResponse({
     status: 200,
