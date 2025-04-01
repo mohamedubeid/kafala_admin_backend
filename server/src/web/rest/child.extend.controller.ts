@@ -109,6 +109,43 @@ export class ChildExtendedController {
       hasSponership,
     );
   }
+
+  @Get('/web/getGuardianChilds')
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles(RoleType.CHILD_GUARDIAN)
+  @ApiResponse({
+    status: 200,
+    description: 'The found record',
+    type: ChildDTO,
+  })
+  async getGuardianChilds(@Req() req: Request) {
+    const pageRequest: PageRequest = new PageRequest(
+      req.query.page ? req.query.page : req.query.page,
+      req.query.size ? req.query.size : req.query.size,
+      req.query.sort,
+    );
+    const name = req?.query?.name?.trim().toLowerCase() || '';
+    const ageFrom = req?.query?.ageFrom;
+    const ageTo = req?.query?.ageTo;
+    const sponerShipType = req?.query?.sponerShipType;
+    const orphanClassification = req?.query?.orphanClassification;
+    const dateFrom = req?.query?.dateFrom;
+    const dateTo = req?.query?.dateTo;
+    const createdBy = req?.user?.login;
+    const { data, count } = await this.childExtendedService.getAdminChilds(
+      pageRequest,
+      name,
+      ageFrom,
+      ageTo,
+      sponerShipType,
+      orphanClassification,
+      dateFrom,
+      dateTo,
+      createdBy,
+    );
+    return data;
+  }
+
   @Get('/admin/getChilds')
   @ApiResponse({
     status: 200,

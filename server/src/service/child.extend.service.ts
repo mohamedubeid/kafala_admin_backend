@@ -418,6 +418,7 @@ END
     orphanClassification?: OrphanClassification,
     startDate?: string,
     endDate?: string,
+    createdBy?: string
   ) {
     const today = new Date().toISOString();
     const query = this.childRepository
@@ -455,6 +456,9 @@ END
       .addGroupBy('sponsershipType.type')
       .orderBy('child.score', 'DESC');
 
+    if (createdBy) {
+      query.andWhere('child.createdBy = :createdBy', { createdBy });
+    }
     if (first_name) {
       const lowerName = first_name.toLowerCase();
 
