@@ -55,7 +55,7 @@ export class ChildHealthStatusExtendedController {
     return results;
   }
   @Get('/:id')
-  @Roles(RoleType.USER,RoleType.ADMIN)
+  @Roles(RoleType.USER,RoleType.ADMIN, RoleType.CHILD_GUARDIAN)
   @ApiResponse({
     status: 200,
     description: 'The found record',
