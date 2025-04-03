@@ -12,6 +12,7 @@ import { ChildSponsorShip } from './child-sponsor-ship.entity';
 import { Gender } from './enumeration/gender';
 
 import { User } from './user.entity';
+import { ChildStatus } from './enumeration/child-status';
 
 /**
  * A Child.
@@ -68,6 +69,9 @@ export class Child extends BaseEntity {
 
   @Column({ type: 'float', name: 'score', nullable: true })
   score: number;
+
+  @Column({ type: 'simple-enum', name: 'status', enum: ChildStatus })
+  status: ChildStatus;
 
   @OneToOne(type => User)
   @JoinColumn()

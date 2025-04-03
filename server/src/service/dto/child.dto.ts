@@ -12,6 +12,7 @@ import { ChildEducationStatusDTO } from './child-education-status.dto';
 import { ChildSponsorShipDTO } from './child-sponsor-ship.dto';
 
 import { UserDTO } from './user.dto';
+import { ChildStatus } from '../../domain/enumeration/child-status';
 
 /**
  * A ChildDTO object.
@@ -67,6 +68,9 @@ export class ChildDTO extends BaseDTO {
 
   @ApiProperty({ description: 'score field', required: false })
   score: number;
+
+  @ApiProperty({ enum: ChildStatus, description: 'status field', required: false })
+  status: ChildStatus;
 
   @ApiProperty({ type: () => UserDTO, description: 'user relationship' })
   user: UserDTO;

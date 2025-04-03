@@ -142,6 +142,7 @@ export class ChildExtendedController {
       dateFrom,
       dateTo,
       createdBy,
+      'APPROVED'
     );
     return data;
   }

@@ -228,6 +228,7 @@ const StepOne = ({ child, handleNext }: ChildProps) => {
           note: childNote.notes.note,
         },
       })),
+      ...(isNew && { status: 'APPROVED' }),
     };
 
     if (isNew) {

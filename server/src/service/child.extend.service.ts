@@ -418,7 +418,8 @@ END
     orphanClassification?: OrphanClassification,
     startDate?: string,
     endDate?: string,
-    createdBy?: string
+    createdBy?: string,
+    status?: 'PENDING' | 'APPROVED' | 'REJECTED'
   ) {
     const today = new Date().toISOString();
     const query = this.childRepository
@@ -459,6 +460,11 @@ END
     if (createdBy) {
       query.andWhere('child.createdBy = :createdBy', { createdBy });
     }
+
+    if (status) {
+      query.andWhere('child.status = :status', { status });
+    }
+
     if (first_name) {
       const lowerName = first_name.toLowerCase();
 
@@ -684,6 +690,7 @@ END
       childMaritalStatus: new ChildMaritalStatusDTO(),
       childEducationStatus: new ChildEducationStatusDTO(),
       childSponsorShip: new ChildSponsorShipDTO(),
+      status: childsDTO['status'],
     };
   }
 
