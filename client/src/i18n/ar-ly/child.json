@@ -1,6 +1,8 @@
 {
   "kafalaApp": {
     "child": {
+      "status": "الحالة",
+      "changeStatus": "تغير الحالة",
       "home": {
         "title": "الاطفال",
         "refreshListLabel": "Refresh list",
@@ -104,6 +106,12 @@
       "wrongFile": "ملف خاطئ",
       "FillDataWarning": "يرجي اضافة الصورة او الوصف",
       "score": "معدل الضرر"
+    },
+    "ChildStatus": {
+      "null": "",
+      "PENDING": "قيد الانتظار",
+      "APPROVED": "مقبول",
+      "REJECTED": "مرفوض"
     }
   }
 }

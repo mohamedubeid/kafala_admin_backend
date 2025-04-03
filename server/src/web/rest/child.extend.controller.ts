@@ -298,24 +298,26 @@ export class ChildExtendedController {
     // Fetch existing notes
     // const existingNotes = await this.childNotesExtendedService.findByChildId(storedChild.id);
 
-    for (const childNote of childDTO.childNotes) {
-      if (childNote.notes) {
-        let note;
-
-        if (childNote.notes.id) {
-          if (childNote.notes.note.trim() === '') {
-            await this.childNotesExtendedService.deleteById(childNote.id);
-            await this.notesService.deleteById(childNote.notes.id);
-          } else {
-            note = await this.notesService.update(childNote.notes, req.user?.login);
+    if(childDTO.childNotes) {
+      for (const childNote of childDTO.childNotes) {
+        if (childNote.notes) {
+          let note;
+  
+          if (childNote.notes.id) {
+            if (childNote.notes.note.trim() === '') {
+              await this.childNotesExtendedService.deleteById(childNote.id);
+              await this.notesService.deleteById(childNote.notes.id);
+            } else {
+              note = await this.notesService.update(childNote.notes, req.user?.login);
+            }
+          } else if (childNote.notes.note.trim() !== '') {
+            note = await this.notesService.save(childNote.notes, req.user?.login);
           }
-        } else if (childNote.notes.note.trim() !== '') {
-          note = await this.notesService.save(childNote.notes, req.user?.login);
-        }
-        if (note) {
-          childNote.child = storedChild;
-          childNote.notes = note;
-          await this.childNotesExtendedService.save(childNote, req.user?.login);
+          if (note) {
+            childNote.child = storedChild;
+            childNote.notes = note;
+            await this.childNotesExtendedService.save(childNote, req.user?.login);
+          }
         }
       }
     }

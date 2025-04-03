@@ -14,10 +14,12 @@ import { saveAs } from 'file-saver';
 import ExcelJS from 'exceljs';
 import * as XLSX from 'xlsx';
 
-import { getEntities, getExportedChildsData, importChilds, reset } from './child.reducer';
+import { createEntity, getEntities, getExportedChildsData, importChilds, reset } from './child.reducer';
 import { UploadOutlined } from '@ant-design/icons';
 import { read, utils } from 'xlsx';
 import { toast } from 'react-toastify';
+import { ChildStatus } from 'app/shared/model/enumerations/child-status.model';
+import ChangeChildStatusModal from './change-child-status-modal';
 
 const { RangePicker } = DatePicker;
 export const Child = (props: any) => {
@@ -30,7 +32,7 @@ export const Child = (props: any) => {
   const childList = useAppSelector(state => state.child.entities);
   const exportedChildData = useAppSelector(state => state.child.exportedData);
   const fetchExportedDataSuccess = useAppSelector(state => state.child.fetchExportedDataSuccess);
-
+  const updateSuccess = useAppSelector(state => state.child.updateSuccess);
   const loading = useAppSelector(state => state.child.loading);
   const currentLocale = useAppSelector(state => state.locale.currentLocale);
   const totalItems = useAppSelector(state => state.child.totalItems);
@@ -134,6 +136,30 @@ export const Child = (props: any) => {
       return true;
     });
     return uniqueItems;
+  };
+//handle change child status
+  const [isChangeStatusModalOpen, setIsChangeStatusModalOpen] = useState<boolean>(false);
+  const [selectedChild, setSelectedChild] = useState<any>(null);
+  const [selectedStatus, setSelectedStatus] = useState<ChildStatus>(ChildStatus.PENDING);
+
+  const openChangeStatusModal = (child: any) => {
+    setSelectedChild(child);
+    setSelectedStatus(child.status as ChildStatus);
+    setIsChangeStatusModalOpen(true);
+  };
+
+  const closeChangeStatusModal = () => {
+    setIsChangeStatusModalOpen(false);
+  };
+
+  const saveChildStatus = (newStatus: ChildStatus) => {
+    if (selectedChild) {
+      const updatedChild = {
+        ...selectedChild,
+        status: newStatus,
+      };
+      dispatch(createEntity(updatedChild));
+    }
   };
 
   useEffect(() => {}, [exportedChildData]);
@@ -346,6 +372,7 @@ export const Child = (props: any) => {
     orphanClassification,
     dateFrom,
     dateTo,
+    updateSuccess
   ]);
   useEffect(() => {
     setName('');
@@ -1247,6 +1274,12 @@ export const Child = (props: any) => {
                 <th className="hand">
                   <Translate contentKey="kafalaApp.child.sponsorshipName">Sponsorship Name</Translate>
                 </th>
+                <th className="hand" onClick={sort('status')}>
+                  <Translate contentKey="kafalaApp.relChildKafeel.status">Status</Translate>{' '}
+                </th>
+                <th>
+                  <Translate contentKey="kafalaApp.relChildKafeel.changeStatus">change status</Translate>
+                </th>
                 {/* <th className="hand">
                   <Translate contentKey="kafalaApp.child.psychologist">Psychologist</Translate>
                 </th>
@@ -1295,6 +1328,12 @@ export const Child = (props: any) => {
                   {/* <td>...</td>
                   <td>...</td>
                   <td>...</td>              */}{' '}
+                  <td>{translate(`kafalaApp.ChildStatus.${child.status}`)}</td>
+                  <td className="nowrap">
+                    <Button className="btn btn-success" onClick={() => openChangeStatusModal(child)}>
+                      <Translate contentKey="kafalaApp.child.changeStatus">Change Status</Translate>
+                    </Button>
+                  </td>
                   <td>
                     <Dropdown>
                       <Dropdown.Toggle
@@ -1340,6 +1379,16 @@ export const Child = (props: any) => {
           )
         )}
       </div>
+      <ChangeChildStatusModal
+          child={selectedChild}
+          availableStatuses={[ChildStatus.PENDING, ChildStatus.APPROVED, ChildStatus.REJECTED]}
+          isOpen={isChangeStatusModalOpen}
+          onSubmit={saveChildStatus}
+          onCancel={closeChangeStatusModal}
+          updateSuccess={updateSuccess}
+          loading={loading}
+          selectedStatus={selectedStatus}
+        />
       <div id="clientListPagination" className={childList && childList.length > 0 ? '' : 'd-none'}>
         <Row className="justify-content-center">
           <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={paginationState.itemsPerPage} i18nEnabled />

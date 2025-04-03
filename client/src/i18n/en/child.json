@@ -1,6 +1,8 @@
 {
   "kafalaApp": {
     "child": {
+      "status": "Status",
+      "changeStatus": "Change Status",
       "home": {
         "title": "Children",
         "refreshListLabel": "Refresh list",
@@ -105,6 +107,12 @@
       "wrongFile": "Wrong File",
       "FillDataWarning": "Please Fill Image or Description",
       "score": "Score Damage"
+    },
+    "ChildStatus": {
+      "null": "",
+      "PENDING": "PENDING",
+      "APPROVED": "APPROVED",
+      "REJECTED": "REJECTED"
     }
   }
 }
