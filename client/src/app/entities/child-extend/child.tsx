@@ -14,7 +14,7 @@ import { saveAs } from 'file-saver';
 import ExcelJS from 'exceljs';
 import * as XLSX from 'xlsx';
 
-import { createEntity, getEntities, getExportedChildsData, importChilds, reset } from './child.reducer';
+import { createEntity, createUpdateEntity, getEntities, getExportedChildsData, importChilds, reset } from './child.reducer';
 import { UploadOutlined } from '@ant-design/icons';
 import { read, utils } from 'xlsx';
 import { toast } from 'react-toastify';
@@ -82,6 +82,10 @@ export const Child = (props: any) => {
   const [dateFrom, setDateFrom] = useState<string>('');
   const [dateTo, setDateTo] = useState<string>('');
   const [dataImported, setDataImported] = useState(false);
+
+  // status filter
+  const [status, setStatus] = useState(translate('kafalaApp.child.All'));
+  const [statusKey, setStatusKey] = useState<ChildStatus | null>();
   //use effects
   useEffect(() => {
     const sponsershipType = params.get('sponsershipType');
@@ -158,7 +162,21 @@ export const Child = (props: any) => {
         ...selectedChild,
         status: newStatus,
       };
-      dispatch(createEntity(updatedChild));
+      const queryParams = {
+        sort: `${sortState.sort},${sortState.order}`,
+        page: paginationState.activePage - 1,
+        size: paginationState.itemsPerPage,
+        name: name || '',
+        sponsershipType: sponsorshipKey || '',
+        orphanClassification: orphanClassificationKey || '',
+        ageFrom: ageFrom || null,
+        ageTo: ageTo || null,
+        dateFrom: dateFrom || '',
+        dateTo: dateTo || '',
+        status: statusKey || null,
+      };
+  
+      dispatch(createUpdateEntity({ entity: updatedChild, queryParams }));
     }
   };
 
@@ -269,6 +287,7 @@ export const Child = (props: any) => {
         ageTo: ageTo || null,
         dateFrom: dateFrom || '',
         dateTo: dateTo || '',
+        status: statusKey || null,
       }),
     );
   };
@@ -286,6 +305,7 @@ export const Child = (props: any) => {
           ageTo: ageTo || null,
           dateFrom: dateFrom || '',
           dateTo: dateTo || '',
+          status: statusKey || null,
         }),
       );
 
@@ -372,7 +392,8 @@ export const Child = (props: any) => {
     orphanClassification,
     dateFrom,
     dateTo,
-    updateSuccess
+    updateSuccess,
+    statusKey
   ]);
   useEffect(() => {
     setName('');
@@ -399,6 +420,7 @@ export const Child = (props: any) => {
     ageRange,
     dateFrom,
     dateTo,
+    statusKey,
   ]);
 
   useEffect(() => {
@@ -406,7 +428,7 @@ export const Child = (props: any) => {
       ...paginationState,
       activePage: 1,
     });
-  }, [name, sponsershipType, orphanClassification, ageRange, dateFrom, dateTo]);
+  }, [name, sponsershipType, orphanClassification, ageRange, dateFrom, dateTo, statusKey]);
 
   function filter() {
     let endURL = `?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`;
@@ -421,6 +443,9 @@ export const Child = (props: any) => {
     }
     if (ageRange) {
       endURL += `&ageRange=${ageRange}`;
+    }
+    if (statusKey) {
+      endURL += `&status=${statusKey}`;
     }
 
     if (pageLocation.search !== endURL) {
@@ -437,9 +462,48 @@ export const Child = (props: any) => {
           ageTo: ageTo,
           dateFrom: dateFrom || '',
           dateTo: dateTo || '',
+          status: statusKey || null,
         }),
       );
     }
+  }
+  //status filter options
+  function statusOptions() {
+    const statusItems: MenuProps['items'] = [
+      {
+        label: `  ${translate('kafalaApp.child.All')}`,
+        key: '1',
+        onClick() {
+          setStatus(translate('kafalaApp.child.All'));
+          setStatusKey(null);
+        },
+      },
+      {
+        label: ` ${translate('kafalaApp.ChildStatus.PENDING')}`,
+        key: '2',
+        onClick() {
+          setStatus(translate('kafalaApp.ChildStatus.PENDING'));
+          setStatusKey('PENDING' as ChildStatus);
+        },
+      },
+      {
+        label: ` ${translate('kafalaApp.ChildStatus.APPROVED')}`,
+        key: '3',
+        onClick() {
+          setStatus(translate('kafalaApp.ChildStatus.APPROVED'));
+          setStatusKey('APPROVED' as ChildStatus);
+        },
+      },
+      {
+        label: ` ${translate('kafalaApp.ChildStatus.REJECTED')}`,
+        key: '4',
+        onClick() {
+          setStatus(translate('kafalaApp.ChildStatus.REJECTED'));
+          setStatusKey('REJECTED' as ChildStatus);
+        },
+      },
+    ];
+    return statusItems;
   }
   // functions
   const handlePagination = currentPage => {
@@ -450,19 +514,20 @@ export const Child = (props: any) => {
   };
   const getAllEntities = () => {
     dispatch(
-      getEntities({
-        sort: `${sortState.sort},${sortState.order}`,
-        page: paginationState.activePage - 1,
-        size: paginationState.itemsPerPage,
-        name: name || '',
-        sponsershipType: sponsorshipKey || '',
-        orphanClassification: orphanClassificationKey || '',
-        ageFrom: ageFrom || null,
-        ageTo: ageTo || null,
-        dateFrom: dateFrom || '',
-        dateTo: dateTo || '',
-      }),
-    );
+          getEntities({
+            sort: `${sortState.sort},${sortState.order}`,
+            page: paginationState.activePage - 1,
+            size: paginationState.itemsPerPage,
+            name: name || '',
+            sponsershipType: sponsorshipKey || '',
+            orphanClassification: orphanClassificationKey || '',
+            ageFrom: ageFrom || null,
+            ageTo: ageTo || null,
+            dateFrom: dateFrom || '',
+            dateTo: dateTo || '',
+            status: statusKey || null,
+          }),
+        );
   };
   const handleRedirect = () => {
     navigate('/child/new');
@@ -1178,6 +1243,23 @@ export const Child = (props: any) => {
                 <span id="subscriptionFilterValue" className="text-dark">
                   : {sponsershipType}
                 </span>
+                <DownOutlined style={{ color: '#737373' }} />
+              </Space>
+            </Button>
+          </AntdDropdown>
+        </div>
+        <div className="dropdownFilter">
+          <AntdDropdown
+            menu={{
+              items: statusOptions(),
+            }}
+          >
+            <Button style={{ backgroundColor: 'white', borderRadius: '8px' }}>
+              <Space>
+                <span id="statusFilter" className="filterTitle">
+                  <Translate contentKey="kafalaApp.child.status">Status</Translate>:
+                </span>
+                <span className="text-dark">: {status}</span>
                 <DownOutlined style={{ color: '#737373' }} />
               </Space>
             </Button>

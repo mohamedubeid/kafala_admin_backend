@@ -8,6 +8,7 @@ import {
   ValidateSliceCaseReducers,
 } from '@reduxjs/toolkit';
 import { AxiosError, isAxiosError } from 'axios';
+import { ChildStatus } from '../model/enumerations/child-status.model';
 
 /**
  * Model for redux actions with pagination
@@ -38,6 +39,7 @@ export type IChildQueryParams = {
   ageTo?: number;
   dateFrom?: string;
   dateTo?: string;
+  status?: ChildStatus;
 };
 
 /**
