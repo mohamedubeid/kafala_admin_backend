@@ -113,7 +113,7 @@ export class RelChildKafeelExtendedController {
     return results;
   }
   @Get('/:id')
-  @Roles(RoleType.ADMIN)
+  @Roles(RoleType.ADMIN, RoleType.CHILD_GUARDIAN)
   @ApiResponse({
     status: 200,
     description: 'The found record',
@@ -121,6 +121,17 @@ export class RelChildKafeelExtendedController {
   })
   async getOne(@Param('id') id: number): Promise<RelChildKafeelDTO> {
     return await this.relChildKafeelExtendedService.findById(id);
+  }
+
+  @Get('/web/getChildTransactions/:id')
+  @Roles(RoleType.CHILD_GUARDIAN)
+  @ApiResponse({
+    status: 200,
+    description: 'The found record',
+    type: RelChildKafeelDTO,
+  })
+  async getChildTransactions(@Param('id') id: number): Promise<ChildSponsoredDTO[]> {
+    return await this.relChildKafeelExtendedService.getChildTransactions(id);
   }
   @Get('/web/getKafeelChildsIds')
   @Roles(RoleType.GUARANTOR)

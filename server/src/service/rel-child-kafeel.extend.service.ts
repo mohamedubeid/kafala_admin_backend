@@ -95,6 +95,32 @@ export class RelChildKafeelExtendedService {
 
     return result;
   }
+
+  async getChildTransactions(childId: number): Promise<ChildSponsoredDTO[]> {
+    const result = await this.relChildKafeelRepository
+      .createQueryBuilder('rel-child-kafeel')
+      .leftJoinAndSelect('rel-child-kafeel.child', 'child')
+      .leftJoinAndSelect('rel-child-kafeel.kafeel', 'kafeel')
+      .leftJoinAndSelect('kafeel.user', 'user')
+      .leftJoin('child_sponsor_ship', 'sponsorship', 'sponsorship.childId = rel-child-kafeel.childId')
+      .where('rel-child-kafeel.childId = :childId', { childId })
+      .select('child.first_name', 'firstName')
+      .addSelect('child.father_name', 'fatherName')
+      .addSelect('child.familyName', 'familyName')
+      .addSelect('child.image_url', 'imageUrl')
+      .addSelect('rel-child-kafeel.start_date', 'startDate')
+      .addSelect('rel-child-kafeel.expiration_date', 'expirationDate')
+      .addSelect('rel-child-kafeel.cost', 'cost')
+      .addSelect('rel-child-kafeel.duration', 'duration')
+      .addSelect('user.firstName', 'kafeelFirstName')
+      .addSelect('user.lastName', 'kafeelLastName')
+      .addSelect('sponsorship.minimum_cost', 'minimumCost')
+      .andWhere('rel-child-kafeel.status = "ACCEPTED"')
+      .orderBy('rel-child-kafeel.expiration_date', 'ASC')
+      .getRawMany();
+    return result;
+  }
+
   async getKafeelChilds(kafeelId: number): Promise<ChildSponsoredDTO[]> {
     const result = await this.relChildKafeelRepository
       .createQueryBuilder('rel-child-kafeel')
