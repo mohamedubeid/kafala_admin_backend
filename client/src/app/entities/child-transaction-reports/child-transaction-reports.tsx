@@ -142,7 +142,7 @@ export const ChildTransactionReports = () => {
         </div>
         <div className="d-flex mt-2">
           <button className="buttonDesign" onClick={showModal}>
-            <Translate contentKey="kafalaApp.child.addTransactionReport">addTransactionReport</Translate>
+            <Translate contentKey="kafalaApp.childTransactionReports.addTransactionReport">addTransactionReport</Translate>
           </button>
         </div>
 
