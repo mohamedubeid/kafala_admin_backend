@@ -3,16 +3,15 @@ import { useParams } from 'react-router-dom';
 import { getSortState, JhiItemCount, JhiPagination, Translate, translate } from 'react-jhipster';
 
 import { useAppDispatch, useAppSelector } from 'app/config/store';
-import { createEntity, getChildParticipations } from '../child-prticipations-extend/child-prticipations.reducer';
-import AddParticipation from 'app/modals/addParticipations';
-import { getEntity } from './child.reducer';
-import { toast } from 'react-toastify';
+import AddTransactionReport from 'app/entities/child-transaction-reports/modals/addTransactionReport';
+import { getEntity } from '../child-extend/child.reducer';
 import { Row, Table } from 'reactstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ASC, DESC } from 'app/shared/util/pagination.constants';
 import { overridePaginationStateWithQueryParams, overrideSortStateWithQueryParams } from 'app/shared/util/entity-utils';
+import { getChildTransactions, createEntity } from './child-transaction-reports.reducer';
 
-export const ChildParticipations = () => {
+export const ChildTransactionReports = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams<'id'>();
   const navigate = useNavigate();
@@ -56,18 +55,14 @@ export const ChildParticipations = () => {
     });
   };
   const saveEntity = entity => {
-    if ((!entity.image || entity.image === '') && (!entity.desceription || entity.desceription === '')) {
-      toast.warning(translate('kafalaApp.child.FillDataWarning'));
-    } else {
       entity.child = childEntity.id;
       dispatch(createEntity(entity));
       handleCancel();
-    }
   };
 
   const getAllEntities = () => {
     dispatch(
-      getChildParticipations({
+      getChildTransactions({
         sort: `${sortState.sort},${sortState.order}`,
         page: paginationState.activePage - 1,
         size: itemsPerPage,
@@ -78,7 +73,7 @@ export const ChildParticipations = () => {
   useEffect(() => {
     if (updateSuccess) {
       dispatch(
-        getChildParticipations({
+        getChildTransactions({
           sort: `${sortState.sort},${sortState.order}`,
           page: paginationState.activePage - 1,
           size: itemsPerPage,
@@ -130,7 +125,7 @@ export const ChildParticipations = () => {
           </div>
           <div>
             <h2
-              style={{ fontSize: '32px', fontWeight: '600', color: '#212121' }}
+              style={{ fontSize: '20px', fontWeight: '500', color: '#212121' }}
               className="mt-2 mb-2"
               id="child-heading"
               data-cy="ChildHeading"
@@ -147,11 +142,11 @@ export const ChildParticipations = () => {
         </div>
         <div className="d-flex mt-2">
           <button className="buttonDesign" onClick={showModal}>
-            <Translate contentKey="kafalaApp.child.addParticipation">addParticipation</Translate>
+            <Translate contentKey="kafalaApp.child.addTransactionReport">addTransactionReport</Translate>
           </button>
         </div>
 
-        <AddParticipation isModalOpen={isModalOpen} handleCancel={handleCancel} currentLocale={currentLocale} saveEntity={saveEntity} />
+        <AddTransactionReport isModalOpen={isModalOpen} handleCancel={handleCancel} currentLocale={currentLocale} saveEntity={saveEntity} />
       </div>
       <div className="table-responsive">
         {childPrticipationsList && childPrticipationsList.length > 0 ? (
@@ -159,13 +154,13 @@ export const ChildParticipations = () => {
             <thead className="tableHeader">
               <tr>
                 <th className="hand">
-                  <Translate contentKey="kafalaApp.childPrticipations.participatipnImage">participation image</Translate>
+                  <Translate contentKey="kafalaApp.childTransactionReports.participatipnImage">participation image</Translate>
                 </th>
                 <th className="hand">
-                  <Translate contentKey="kafalaApp.childPrticipations.participationType">participationType</Translate>
+                  <Translate contentKey="kafalaApp.childTransactionReports.participationType">participationType</Translate>
                 </th>
                 <th className="hand">
-                  <Translate contentKey="kafalaApp.childPrticipations.description">description</Translate>
+                  <Translate contentKey="kafalaApp.childTransactionReports.description">description</Translate>
                 </th>
               </tr>
             </thead>
@@ -180,7 +175,7 @@ export const ChildParticipations = () => {
                     )}
                   </td>
                   <td>
-                    <Translate contentKey={`kafalaApp.childPrticipations.${participate.participationType}`} />
+                    <Translate contentKey={`kafalaApp.childTransactionReports.${participate.participationType}`} />
                   </td>
                   <td>
                     {participate.desceription ? (
@@ -203,7 +198,7 @@ export const ChildParticipations = () => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="kafalaApp.childPrticipations.notFound">No Children found</Translate>
+              <Translate contentKey="kafalaApp.childTransactionReports.notFound">No Children found</Translate>
             </div>
           )
         )}
@@ -226,4 +221,4 @@ export const ChildParticipations = () => {
   );
 };
 
-export default ChildParticipations;
+export default ChildTransactionReports;

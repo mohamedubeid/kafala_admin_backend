@@ -32,6 +32,7 @@ import { RelChildKafeelModule } from './module/rel-child-kafeel.module';
 import { RelChildKafeelExtendedExtendedModule } from './module/rel-child-kafeel.extend.module';
 import { KafeelExtendedModule } from './module/kafeel.extend.module';
 import { ChildPrticipationsExtendedModule } from './module/child-prticipations.extend.module';
+import { ChildTransactionReportsExtendedModule } from './module/child-transaction-reports.extend.module';
 // jhipster-needle-add-entity-module-to-main-import - JHipster will import entity modules here, do not remove
 // jhipster-needle-add-controller-module-to-main-import - JHipster will import controller modules here, do not remove
 // jhipster-needle-add-service-module-to-main-import - JHipster will import service modules here, do not remove
@@ -71,7 +72,8 @@ import { ChildPrticipationsExtendedModule } from './module/child-prticipations.e
     RelChildKafeelModule,
     RelChildKafeelExtendedExtendedModule,
     KafeelExtendedModule,
-    ChildPrticipationsExtendedModule
+    ChildPrticipationsExtendedModule,
+    ChildTransactionReportsExtendedModule
     // jhipster-needle-add-entity-module-to-main - JHipster will add entity modules here, do not remove
   ],
   controllers: [

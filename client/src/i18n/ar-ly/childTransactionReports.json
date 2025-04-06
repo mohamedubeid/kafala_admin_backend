@@ -1,0 +1,38 @@
+{
+  "kafalaApp": {
+    "childTransactionReports": {
+      "home": {
+        "title": "تقارير معاملات الطفل",
+        "refreshListLabel": "تحديث القائمة",
+        "createLabel": "إنشاء تقرير معاملات جديد",
+        "createOrEditLabel": "إنشاء أو تعديل تقرير معاملات",
+        "notFound": "لا توجد تقارير معاملات الطفل"
+      },
+      "created": "تم إنشاء تقرير معاملات جديد برقم التعريف {{ param }}",
+      "updated": "تم تحديث تقرير معاملات برقم التعريف {{ param }}",
+      "deleted": "تم حذف تقرير معاملات برقم التعريف {{ param }}",
+      "delete": {
+        "question": "هل أنت متأكد أنك تريد حذف تقرير معاملات الطفل برقم {{ id }}؟"
+      },
+      "detail": {
+        "title": "تفاصيل تقرير معاملات الطفل"
+      },
+      "id": "رقم التعريف",
+      "transactionImage": "رفع صورة أو مستند",
+      "transactionVideo": "رفع فيديو",
+      "amountReceived": "المبلغ المستلم",
+      "image": "Image",
+      "desceription": "وصف المعاملة",
+      "child": "Child",
+      "add": "إضافة",
+      "cancel": "إلغاء",
+      "description": "وصف المعاملة",
+      "ACHEIVEMENT": "انجاز",
+      "EVENT": "حدث",
+      "notFound": "لا يوجد معاملات",
+      "addTransactionReport": "إضافة تقرير المعاملات",
+      "imageRequired": "Please add an image",
+      "amountRequired": "Please enter a valid amount"
+    }
+  }
+}

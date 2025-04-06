@@ -536,7 +536,7 @@ export const Child = (props: any) => {
     navigate(`/child/${id}/edit`);
   };
   const handleRedirectToVeiw = (id: number) => {
-    navigate(`/child/${id}/ChildParticipations`);
+    navigate(`/child/${id}/child-transaction-reports`);
   };
   const sort = p => () => {
     setSortState({
@@ -1407,9 +1407,6 @@ export const Child = (props: any) => {
                   <td>{child?.score}</td>
                   <td>{child?.totalCost}</td>
                   <td>{child?.childSponsorShip?.name ? child?.childSponsorShip?.name : '...'}</td>
-                  {/* <td>...</td>
-                  <td>...</td>
-                  <td>...</td>              */}{' '}
                   <td>{translate(`kafalaApp.ChildStatus.${child.status}`)}</td>
                   <td className="nowrap">
                     <Button className="btn btn-success" onClick={() => openChangeStatusModal(child)}>
@@ -1432,7 +1429,7 @@ export const Child = (props: any) => {
                           <Translate contentKey="kafalaApp.child.editData">Edit Data</Translate>
                         </Dropdown.Item>
                         <Dropdown.Item onClick={() => handleRedirectToVeiw(child.id)}>
-                          <Translate contentKey="kafalaApp.child.participations">child participations</Translate>
+                          <Translate contentKey="kafalaApp.child.transactionReport">transaction report</Translate>
                         </Dropdown.Item>
                         {/* <Dropdown.Item disabled>
                           <Translate contentKey="kafalaApp.child.changePassword">Change Password</Translate>

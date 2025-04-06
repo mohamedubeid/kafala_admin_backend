@@ -1,0 +1,38 @@
+{
+  "kafalaApp": {
+    "childTransactionReports": {
+      "home": {
+        "title": "Child Transaction Reports",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Child Transaction Report",
+        "createOrEditLabel": "Create or edit a Child Transaction Report",
+        "notFound": "No Child Transaction Report found"
+      },
+      "created": "A new Child Transaction Report is created with identifier {{ param }}",
+      "updated": "A Child Transaction Report is updated with identifier {{ param }}",
+      "deleted": "A Child Transaction Report is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Child Transaction Report {{ id }}?"
+      },
+      "detail": {
+        "title": "Child Transaction Report"
+      },
+      "id": "ID",
+      "transactionImage": "Upload Transaction Image or Document",
+      "transactionVideo": "Upload Trabsactuib Video",
+      "amountReceived": "Amount Received",
+      "image": "Image",
+      "desceription": "Desceription",
+      "child": "Child",
+      "add": "Add",
+      "cancel": "Cancel",
+      "description": "Description",
+      "ACHEIVEMENT": "ACHEIVEMENT",
+      "EVENT": "EVENT",
+      "notFound": "No Transaction Report Found",
+      "addTransactionReport": "Add Transaction Report",
+      "imageRequired": "Please add an image",
+      "amountRequired": "Please enter a valid amount"
+    }
+  }
+}
