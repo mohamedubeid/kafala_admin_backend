@@ -22,6 +22,7 @@
       "transactionVideo": "Upload Trabsactuib Video",
       "amountReceived": "Amount Received",
       "image": "Image",
+      "Video": "Video",
       "desceription": "Desceription",
       "child": "Child",
       "add": "Add",
@@ -32,7 +33,15 @@
       "notFound": "No Transaction Report Found",
       "addTransactionReport": "Add Transaction Report",
       "imageRequired": "Please add an image",
-      "amountRequired": "Please enter a valid amount"
+      "amountRequired": "Please enter a valid amount",
+      "createdBy": "Created By",
+      "changeStatus": "Change Status",
+      "status": {
+        "title": "Status",
+        "PENDING": "PENDING",
+        "APPROVED": "APPROVED",
+        "REJECTED": "REJECTED"
+      }
     }
   }
 }

@@ -51,8 +51,8 @@ export class ChildTransactionReportsExtendedService {
   }
   async childTransactionReports(pageRequest: PageRequest, childId: number) {
     const queryBuilder = this.childTransactionReportsRepository
-      .createQueryBuilder('child-transaction-reports')
-      .where('child-transaction-reports.childId = :childId', { childId });
+      .createQueryBuilder('child-transaction-report')
+      .where('child-transaction-report.childId = :childId', { childId });
     if (!isNaN(pageRequest.size) && pageRequest.size > 0) {
       queryBuilder.skip(pageRequest.page * pageRequest.size).take(pageRequest.size);
     }

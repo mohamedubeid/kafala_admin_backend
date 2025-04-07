@@ -15,6 +15,7 @@ import child from 'app/entities/child/child.reducer';
 import kafeel from 'app/entities/kafeel/kafeel.reducer';
 import ChildParticipations from 'app/entities/child-prticipations-extend/child-prticipations.reducer';
 import relChildKafeel from 'app/entities/rel-child-kafeel-extended/rel-child-kafeel.reducer';
+import childTransactionReports from 'app/entities/child-transaction-reports/child-transaction-reports.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 const entitiesReducers = {
@@ -35,6 +36,7 @@ const entitiesReducers = {
   kafeel,
   relChildKafeel,
   ChildParticipations,
+  childTransactionReports
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
 };
 

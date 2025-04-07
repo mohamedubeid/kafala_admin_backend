@@ -9,7 +9,9 @@ import { Row, Table } from 'reactstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ASC, DESC } from 'app/shared/util/pagination.constants';
 import { overridePaginationStateWithQueryParams, overrideSortStateWithQueryParams } from 'app/shared/util/entity-utils';
-import { getChildTransactions, createEntity } from './child-transaction-reports.reducer';
+import { getChildTransactions, createEntity, ChildTransactionReportsSlice } from './child-transaction-reports.reducer';
+import { ChildTransactionRreportsStatus } from 'app/shared/model/enumerations/child-transaction-reports-status';
+import ChangeTransactionStatusModal from './modals/changeTransactionStatus';
 
 export const ChildTransactionReports = () => {
   const dispatch = useAppDispatch();
@@ -19,11 +21,11 @@ export const ChildTransactionReports = () => {
   const currentLocale = useAppSelector(state => state.locale.currentLocale);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const childEntity = useAppSelector(state => state.child.entity);
-  const totalItems = useAppSelector(state => state.ChildParticipations.totalItems);
-  const loading = useAppSelector(state => state.ChildParticipations.loading);
+  const totalItems = useAppSelector(state => state.childTransactionReports.totalItems);
+  const loading = useAppSelector(state => state.childTransactionReports.loading);
   const [sortState, setSortState] = useState(overrideSortStateWithQueryParams(getSortState(pageLocation, 'id'), pageLocation.search));
-  const childPrticipationsList = useAppSelector(state => state.ChildParticipations.entities);
-  const updateSuccess = useAppSelector(state => state.ChildParticipations.updateSuccess);
+  const childTransactionReportList = useAppSelector(state => state.childTransactionReports.entities);
+  const updateSuccess = useAppSelector(state => state.childTransactionReports.updateSuccess);
   const itemsPerPage = 5;
   const [paginationState, setPaginationState] = useState(
     overridePaginationStateWithQueryParams(
@@ -36,6 +38,31 @@ export const ChildTransactionReports = () => {
       pageLocation.search,
     ),
   );
+//handle change child status
+    const [isChangeStatusModalOpen, setIsChangeStatusModalOpen] = useState<boolean>(false);
+    const [selectedTransactionReport, setSelectedTransactionReport] = useState<any>(null);
+    const [selectedStatus, setSelectedStatus] = useState<ChildTransactionRreportsStatus>(ChildTransactionRreportsStatus.PENDING);
+  
+    const openChangeStatusModal = (report: any) => {
+      setSelectedTransactionReport(report);
+      setSelectedStatus(report.status as ChildTransactionRreportsStatus);
+      setIsChangeStatusModalOpen(true);
+    };
+  
+    const closeChangeStatusModal = () => {
+      setIsChangeStatusModalOpen(false);
+    };
+  
+    const saveChildStatus = (newStatus: ChildTransactionRreportsStatus) => {
+      if (selectedTransactionReport) {
+        const updatedReport = {
+          ...selectedTransactionReport,
+          status: newStatus,
+        };
+        dispatch(createEntity(updatedReport));
+      }
+    };
+
   useEffect(() => {
     dispatch(getEntity(id));
   }, [dispatch, id]);
@@ -149,48 +176,70 @@ export const ChildTransactionReports = () => {
         <AddTransactionReport isModalOpen={isModalOpen} handleCancel={handleCancel} currentLocale={currentLocale} saveEntity={saveEntity} />
       </div>
       <div className="table-responsive">
-        {childPrticipationsList && childPrticipationsList.length > 0 ? (
+        {childTransactionReportList && childTransactionReportList.length > 0 ? (
           <Table responsive className="generalTable">
             <thead className="tableHeader">
               <tr>
                 <th className="hand">
-                  <Translate contentKey="kafalaApp.childTransactionReports.participatipnImage">participation image</Translate>
+                  <Translate contentKey="kafalaApp.childTransactionReports.image">Transaction Image</Translate>
                 </th>
                 <th className="hand">
-                  <Translate contentKey="kafalaApp.childTransactionReports.participationType">participationType</Translate>
+                  <Translate contentKey="kafalaApp.childTransactionReports.Video">Transaction Video</Translate>
                 </th>
                 <th className="hand">
-                  <Translate contentKey="kafalaApp.childTransactionReports.description">description</Translate>
+                  <Translate contentKey="kafalaApp.childTransactionReports.description">Description</Translate>
+                </th>
+                <th className="hand">
+                  <Translate contentKey="kafalaApp.childTransactionReports.amountReceived">Amount Received</Translate>
+                </th>
+                <th className="hand">
+                  <Translate contentKey="kafalaApp.childTransactionReports.createdBy">Created By</Translate>
+                </th>
+                <th className="hand">
+                  <Translate contentKey="kafalaApp.childTransactionReports.status.title">Status</Translate>
+                </th>
+                <th className="hand">
+                  <Translate contentKey="kafalaApp.childTransactionReports.changeStatus">Change Status</Translate>
                 </th>
               </tr>
             </thead>
             <tbody>
-              {childPrticipationsList?.map((participate, i) => (
+              {childTransactionReportList?.map((report, i) => (
                 <tr key={`entity-${i}`} data-cy="entityTable">
                   <td>
-                    {participate.image ? (
-                      <img style={{ width: '114px', height: '80px' }} src={participate.image} />
+                    {report.image ? (
+                      <img style={{ width: '114px', height: '80px' }} src={report.image} alt="Transaction Image" />
                     ) : (
                       <span style={{ marginRight: '20px', marginLeft: '20px', fontSize: '20px' }}>...</span>
                     )}
                   </td>
                   <td>
-                    <Translate contentKey={`kafalaApp.childTransactionReports.${participate.participationType}`} />
-                  </td>
-                  <td>
-                    {participate.desceription ? (
-                      participate.desceription
+                    {report.video ? (
+                      <div style={{ width: '200px', height: '120px', overflow: 'hidden', borderRadius: '8px', boxShadow: '0 2px 6px rgba(0,0,0,0.15)' }}>
+                        <video
+                          style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px' }}
+                          controls
+                        >
+                          <source src={report.video} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                      </div>
                     ) : (
-                      <span style={{ marginRight: '20px', marginLeft: '20px', fontSize: '20px' }}>...</span>
+                      <span style={{ fontSize: '16px', padding: '0 20px' }}>...</span>
                     )}
                   </td>
-                  {/* <td>
-                  <img
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => (window.location.href = `/child-prticipations/${participate.id}/delete`)}
-                    src="../../../content/images/delete.png"
-                  />
-                </td> */}
+                  <td>{report.desceription || '...'}</td>
+                  <td>{report.amount_received ?? '...'}</td>
+                  <td>{report.createdBy || '...'}</td>
+                  <td>{translate(`kafalaApp.childTransactionReports.status.${report.status}`)}</td>
+                  <td className="nowrap">
+                    <button 
+                      className="btn btn-success" 
+                      onClick={() => openChangeStatusModal(report)}
+                    >
+                      <Translate contentKey="kafalaApp.childTransactionReports.changeStatus">Change Status</Translate>
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -203,7 +252,17 @@ export const ChildTransactionReports = () => {
           )
         )}
       </div>
-      <div id="clientListPagination" className={childPrticipationsList && childPrticipationsList.length > 0 ? '' : 'd-none'}>
+      <ChangeTransactionStatusModal
+          transactionReport={selectedTransactionReport}
+          availableStatuses={[ChildTransactionRreportsStatus.PENDING, ChildTransactionRreportsStatus.APPROVED, ChildTransactionRreportsStatus.REJECTED]}
+          isOpen={isChangeStatusModalOpen}
+          onSubmit={saveChildStatus}
+          onCancel={closeChangeStatusModal}
+          updateSuccess={updateSuccess}
+          loading={loading}
+          selectedStatus={selectedStatus}
+        />
+      <div id="clientListPagination" className={childTransactionReportList && childTransactionReportList.length > 0 ? '' : 'd-none'}>
         <Row className="justify-content-center">
           <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={itemsPerPage} i18nEnabled />
         </Row>

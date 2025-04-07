@@ -1,7 +1,7 @@
 export enum ChildTransactionRreportsStatus {
   PENDING = 'PENDING',
 
-  ACCEPTED = 'ACCEPTED',
+  APPROVED = 'APPROVED',
 
   REJECTED = 'REJECTED',
 }

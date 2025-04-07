@@ -21,7 +21,8 @@
       "transactionImage": "رفع صورة أو مستند",
       "transactionVideo": "رفع فيديو",
       "amountReceived": "المبلغ المستلم",
-      "image": "Image",
+      "image": "الصورة",
+      "Video": "فيديو",
       "desceription": "وصف المعاملة",
       "child": "Child",
       "add": "إضافة",
@@ -31,8 +32,16 @@
       "EVENT": "حدث",
       "notFound": "لا يوجد معاملات",
       "addTransactionReport": "إضافة تقرير المعاملات",
-      "imageRequired": "Please add an image",
-      "amountRequired": "Please enter a valid amount"
+      "imageRequired": "يرجى إضافة صورة",
+      "amountRequired": "يرجى إدخال مبلغ صحيح",
+      "createdBy": "تم الإنشاء بواسطة",
+      "changeStatus": "تغيير الحالة",
+      "status": {
+        "title": "الحالة",
+        "PENDING": "قيد الانتظار",
+        "APPROVED": "موافق عليه",
+        "REJECTED": "مرفوض"
+      }
     }
   }
 }

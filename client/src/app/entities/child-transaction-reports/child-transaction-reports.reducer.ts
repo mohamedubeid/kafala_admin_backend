@@ -34,7 +34,7 @@ export const getEntities = createAsyncThunk(
   { serializeError: serializeAxiosError },
 );
 export const getChildTransactions = createAsyncThunk(
-  'childTransactionReports/fetch_entity_list',
+  'childTransactionReports/fetch_child_transactions',
   async ({ sort, childId, page, size }: IChilParticipationQueryParams) => {
     const requestUrl = `${apiUrlV2}/admin/${childId}?${sort ? `sort=${sort}&` : ''}page=${page}&size=${size}&cacheBuster=${new Date().getTime()}`;
     return axios.get<IChildTransactionReports[]>(requestUrl);
@@ -124,8 +124,6 @@ export const ChildTransactionReportsSlice = createEntitySlice({
       })
       .addMatcher(isFulfilled(getChildTransactions), (state, action) => {
         const { data } = action.payload;
-        console.log('data', data);
-
         return {
           ...state,
           loading: false,
