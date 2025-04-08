@@ -49,14 +49,33 @@ export class ChildTransactionReportsExtendedService {
     }
     return;
   }
-  async childTransactionReports(pageRequest: PageRequest, childId: number) {
+  async childTransactionReports(
+    pageRequest: PageRequest, 
+    childId: number,
+    dateFrom?: string,
+    dateTo?: string,
+    status?: 'PENDING' | 'APPROVED' | 'REJECTED'
+  ) {
     const queryBuilder = this.childTransactionReportsRepository
       .createQueryBuilder('child-transaction-report')
       .where('child-transaction-report.childId = :childId', { childId });
     if (!isNaN(pageRequest.size) && pageRequest.size > 0) {
       queryBuilder.skip(pageRequest.page * pageRequest.size).take(pageRequest.size);
     }
+    if (status) {
+      queryBuilder.andWhere('child-transaction-report.status = :status', { status });
+    }
+    if (dateFrom && !isNaN(new Date(dateFrom).getTime())) {
+      const start = new Date(dateFrom);
+      start.setHours(0, 0, 0, 0);
+      queryBuilder.andWhere('child-transaction-report.createdDate >= :dateFrom', { dateFrom: start });
+    }
 
+    if (dateTo && !isNaN(new Date(dateTo).getTime())) {
+      const end = new Date(dateTo);
+      end.setHours(23, 59, 59, 999);
+      queryBuilder.andWhere('child-transaction-report.createdDate <= :dateTo', { dateTo: end });
+    }
     const [childTransactionReports, count] = await queryBuilder.getManyAndCount();
 
     return { childTransactionReports, count };

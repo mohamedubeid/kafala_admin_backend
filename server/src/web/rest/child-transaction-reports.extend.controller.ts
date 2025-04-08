@@ -76,7 +76,10 @@ export class ChildTransactionReportsExtendedController {
       req.query.size ? req.query.size : req.query.size,
       req.query.sort,
     );
-    const { childTransactionReports, count } = await this.childTransactionReportsExtendedService.childTransactionReports(pageRequest, childId);
+    const dateFrom = req?.query?.dateFrom;
+    const dateTo = req?.query?.dateTo;
+    const status = req?.query?.status;
+    const { childTransactionReports, count } = await this.childTransactionReportsExtendedService.childTransactionReports(pageRequest, childId, dateFrom, dateTo, status);
     HeaderUtil.addPaginationHeaders(req.res, new Page(childTransactionReports, count, pageRequest));
     return childTransactionReports;
   }

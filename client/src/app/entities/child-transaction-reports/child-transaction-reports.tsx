@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getSortState, JhiItemCount, JhiPagination, Translate, translate } from 'react-jhipster';
-
+import { Dropdown as AntdDropdown, Space, MenuProps, Pagination, DatePicker, Upload } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+import localeAr from 'antd/es/date-picker/locale/ar_EG';
+import localeEn from 'antd/es/date-picker/locale/en_US';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import AddTransactionReport from 'app/entities/child-transaction-reports/modals/addTransactionReport';
 import { getEntity } from '../child-extend/child.reducer';
-import { Row, Table } from 'reactstrap';
+import { Row, Table, Button } from 'reactstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Dropdown } from 'react-bootstrap';
 import { ASC, DESC } from 'app/shared/util/pagination.constants';
@@ -15,6 +18,7 @@ import { ChildTransactionRreportsStatus } from 'app/shared/model/enumerations/ch
 import ChangeTransactionStatusModal from './modals/changeTransactionStatus';
 import ChildTransactionsDeleteDialog from './modals/child-transaction-delete-dialog';
 
+const { RangePicker } = DatePicker;
 export const ChildTransactionReports = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams<'id'>();
@@ -41,6 +45,73 @@ export const ChildTransactionReports = () => {
       pageLocation.search,
     ),
   );
+
+  //filters
+  const params = new URLSearchParams(pageLocation.search);
+  //date filter
+  const [dateFrom, setDateFrom] = useState<string>('');
+  const [dateTo, setDateTo] = useState<string>('');
+  // status filter
+  const [status, setStatus] = useState(translate('kafalaApp.child.All'));
+  const [statusKey, setStatusKey] = useState<ChildTransactionRreportsStatus | null>();
+
+  // date filter
+  const formatDateTime = date => {
+    if (!date) return '';
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  };
+  const handleChangeDate = dates => {
+    const dateFrom = dates && dates[0] ? formatDateTime(new Date(dates[0])) : '';
+    const dateTo = dates && dates[1] ? formatDateTime(new Date(dates[1])) : '';
+    setDateFrom(dateFrom);
+    setDateTo(dateTo);
+  };
+  function statusOptions() {
+    const statusItems: MenuProps['items'] = [
+      {
+        label: `  ${translate('kafalaApp.childTransactionReports.All')}`,
+        key: '1',
+        onClick() {
+          setStatus(translate('kafalaApp.childTransactionReports.All'));
+          setStatusKey(null);
+        },
+      },
+      {
+        label: ` ${translate('kafalaApp.ChildStatus.PENDING')}`,
+        key: '2',
+        onClick() {
+          setStatus(translate('kafalaApp.ChildStatus.PENDING'));
+          setStatusKey('PENDING' as ChildTransactionRreportsStatus);
+        },
+      },
+      {
+        label: ` ${translate('kafalaApp.ChildStatus.APPROVED')}`,
+        key: '3',
+        onClick() {
+          setStatus(translate('kafalaApp.ChildStatus.APPROVED'));
+          setStatusKey('APPROVED' as ChildTransactionRreportsStatus);
+        },
+      },
+      {
+        label: ` ${translate('kafalaApp.ChildStatus.REJECTED')}`,
+        key: '4',
+        onClick() {
+          setStatus(translate('kafalaApp.ChildStatus.REJECTED'));
+          setStatusKey('REJECTED' as ChildTransactionRreportsStatus);
+        },
+      },
+    ];
+    return statusItems;
+  }
+
 //handle change child status
     const [isChangeStatusModalOpen, setIsChangeStatusModalOpen] = useState<boolean>(false);
     const [selectedTransactionReport, setSelectedTransactionReport] = useState<any>(null);
@@ -118,24 +189,15 @@ export const ChildTransactionReports = () => {
         page: paginationState.activePage - 1,
         size: itemsPerPage,
         childId: parseInt(id, 10),
+        dateFrom: dateFrom || '',
+        dateTo: dateTo || '',
+        status: statusKey || null,
       }),
     );
   };
   useEffect(() => {
-    if (updateSuccess) {
-      dispatch(
-        getChildTransactions({
-          sort: `${sortState.sort},${sortState.order}`,
-          page: paginationState.activePage - 1,
-          size: itemsPerPage,
-          childId: parseInt(id, 10),
-        }),
-      );
-    }
-  }, [updateSuccess]);
-  useEffect(() => {
     getAllEntities();
-  }, [paginationState.activePage, paginationState.itemsPerPage]);
+  }, [paginationState.activePage, paginationState.itemsPerPage, dateFrom, dateTo, statusKey, updateSuccess]);
 
   const sortEntities = () => {
     getAllEntities();
@@ -199,6 +261,37 @@ export const ChildTransactionReports = () => {
 
         <AddTransactionReport isModalOpen={isModalOpen} handleCancel={handleCancel} currentLocale={currentLocale} saveEntity={saveEntity} transactionReport={selectedTransactionReport}/>
         <ChildTransactionsDeleteDialog isModalOpen={isDeleteModalOpen} handleCancel={handleCancelDelete} deleteEntity={confirmDeleteEntity} transactionReport={selectedTransactionReport}/>
+      </div>
+      <div className="filter-container">
+        <div className="dropdownFilter">
+          <AntdDropdown
+            menu={{
+              items: statusOptions(),
+            }}
+          >
+            <Button style={{ backgroundColor: 'white', borderRadius: '8px' }}>
+              <Space>
+                <span id="statusFilter" className="filterTitle">
+                  <Translate contentKey="kafalaApp.child.status">Status</Translate>:
+                </span>
+                <span className="text-dark">: {status}</span>
+                <DownOutlined style={{ color: '#737373' }} />
+              </Space>
+            </Button>
+          </AntdDropdown>
+        </div>
+        <Space direction="vertical" size={8}>
+          <Space direction="vertical" size={8}>
+            <Space direction="horizontal" size={30}>
+              <RangePicker
+                onChange={handleChangeDate}
+                allowEmpty={[true, true]}
+                format={'YYYY/MM/DD'}
+                locale={currentLocale === 'ar-ly' ? localeAr : localeEn}
+              />
+            </Space>
+          </Space>
+        </Space>
       </div>
       <div className="table-responsive">
         {childTransactionReportList && childTransactionReportList.length > 0 ? (

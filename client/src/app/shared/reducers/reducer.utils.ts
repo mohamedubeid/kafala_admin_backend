@@ -9,6 +9,7 @@ import {
 } from '@reduxjs/toolkit';
 import { AxiosError, isAxiosError } from 'axios';
 import { ChildStatus } from '../model/enumerations/child-status.model';
+import { ChildTransactionRreportsStatus } from '../model/enumerations/child-transaction-reports-status';
 
 /**
  * Model for redux actions with pagination
@@ -25,6 +26,17 @@ export type IChilParticipationQueryParams = {
   size?: number;
   sort?: string;
   childId?: number;
+};
+
+export type IChilTransactionQueryParams = {
+  query?: string;
+  page?: number;
+  size?: number;
+  sort?: string;
+  childId?: number;
+  dateFrom?: string;
+  dateTo?: string;
+  status?: ChildTransactionRreportsStatus;
 };
 
 export type IChildQueryParams = {

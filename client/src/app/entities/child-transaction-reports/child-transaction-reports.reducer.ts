@@ -7,7 +7,7 @@ import {
   createEntitySlice,
   EntityState,
   serializeAxiosError,
-  IChilParticipationQueryParams,
+  IChilTransactionQueryParams,
 } from 'app/shared/reducers/reducer.utils';
 import { IChildTransactionReports, defaultValue } from 'app/shared/model/child-transaction-reports.model';
 
@@ -35,8 +35,8 @@ export const getEntities = createAsyncThunk(
 );
 export const getChildTransactions = createAsyncThunk(
   'childTransactionReports/fetch_child_transactions',
-  async ({ sort, childId, page, size }: IChilParticipationQueryParams) => {
-    const requestUrl = `${apiUrlV2}/admin/${childId}?${sort ? `sort=${sort}&` : ''}page=${page}&size=${size}&cacheBuster=${new Date().getTime()}`;
+  async ({ sort, childId, page, size, dateFrom, dateTo, status }: IChilTransactionQueryParams) => {
+    const requestUrl = `${apiUrlV2}/admin/${childId}?${sort ? `sort=${sort}&` : ''}page=${page}&size=${size}&${dateFrom ? `dateFrom=${dateFrom}&` : ''}${dateTo ? `dateTo=${dateTo}&` : ''}${status ? `status=${status}&` : ''}cacheBuster=${new Date().getTime()}`;
     return axios.get<IChildTransactionReports[]>(requestUrl);
   },
   { serializeError: serializeAxiosError },
