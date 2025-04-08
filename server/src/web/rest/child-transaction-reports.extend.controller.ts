@@ -63,6 +63,23 @@ export class ChildTransactionReportsExtendedController {
     return results;
   }
 
+  @Get('/web/:childId')
+  @Roles(RoleType.GUARANTOR)
+  @ApiResponse({
+    status: 200,
+    description: 'List all child transaction',
+    type: ChildTransactionReportsDTO,
+  })
+  async getChildTransactions(@Req() req: Request, @Param('childId') childId: number): Promise<ChildTransactionReportsDTO[]> {
+    const pageRequest: PageRequest = new PageRequest(
+      req.query.page ? req.query.page : req.query.page,
+      req.query.size ? req.query.size : req.query.size,
+      req.query.sort,
+    );
+    const { childTransactionReports, count } = await this.childTransactionReportsExtendedService.childTransactions(childId);
+    return childTransactionReports;
+  }
+
   @Get('/admin/:childId')
   @Roles(RoleType.ADMIN)
   @ApiResponse({

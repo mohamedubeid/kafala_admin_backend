@@ -130,7 +130,11 @@ export class RelChildKafeelExtendedService {
       .addSelect('child.father_name', 'fatherName')
       .addSelect('child.familyName', 'familyName')
       .addSelect('child.image_url', 'imageUrl')
+      .addSelect('child.id', 'childId')
+      .addSelect('rel-child-kafeel.start_date', 'startDate')
       .addSelect('rel-child-kafeel.expiration_date', 'expirationDate')
+      .addSelect('rel-child-kafeel.cost', 'cost')
+      .addSelect('rel-child-kafeel.duration', 'duration')
       .andWhere('rel-child-kafeel.status = "ACCEPTED"')
       .orderBy('rel-child-kafeel.expiration_date', 'ASC')
       .getRawMany();

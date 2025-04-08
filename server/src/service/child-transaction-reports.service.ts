@@ -49,6 +49,17 @@ export class ChildTransactionReportsExtendedService {
     }
     return;
   }
+
+  async childTransactions(childId: number): Promise<{ childTransactionReports: ChildTransactionReportsDTO[]; count: number }> {
+    const queryBuilder = this.childTransactionReportsRepository
+      .createQueryBuilder('child-transaction-report')
+      .leftJoinAndSelect('child-transaction-report.child', 'child')
+      .where('child-transaction-report.childId = :childId', { childId })
+      .andWhere("child-transaction-report.status = 'APPROVED'");
+    const [childTransactionReports, count] = await queryBuilder.getManyAndCount();
+    return { childTransactionReports, count };
+  }
+
   async childTransactionReports(
     pageRequest: PageRequest, 
     childId: number,
