@@ -7,11 +7,13 @@ import AddTransactionReport from 'app/entities/child-transaction-reports/modals/
 import { getEntity } from '../child-extend/child.reducer';
 import { Row, Table } from 'reactstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Dropdown } from 'react-bootstrap';
 import { ASC, DESC } from 'app/shared/util/pagination.constants';
 import { overridePaginationStateWithQueryParams, overrideSortStateWithQueryParams } from 'app/shared/util/entity-utils';
-import { getChildTransactions, createEntity, ChildTransactionReportsSlice } from './child-transaction-reports.reducer';
+import { getChildTransactions, createEntity, ChildTransactionReportsSlice, deleteEntity } from './child-transaction-reports.reducer';
 import { ChildTransactionRreportsStatus } from 'app/shared/model/enumerations/child-transaction-reports-status';
 import ChangeTransactionStatusModal from './modals/changeTransactionStatus';
+import ChildTransactionsDeleteDialog from './modals/child-transaction-delete-dialog';
 
 export const ChildTransactionReports = () => {
   const dispatch = useAppDispatch();
@@ -20,6 +22,7 @@ export const ChildTransactionReports = () => {
   const pageLocation = useLocation();
   const currentLocale = useAppSelector(state => state.locale.currentLocale);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const childEntity = useAppSelector(state => state.child.entity);
   const totalItems = useAppSelector(state => state.childTransactionReports.totalItems);
   const loading = useAppSelector(state => state.childTransactionReports.loading);
@@ -50,6 +53,7 @@ export const ChildTransactionReports = () => {
     };
   
     const closeChangeStatusModal = () => {
+      setSelectedTransactionReport(null);
       setIsChangeStatusModalOpen(false);
     };
   
@@ -72,10 +76,30 @@ export const ChildTransactionReports = () => {
   };
 
   const handleCancel = () => {
+    setSelectedTransactionReport(null);
     setIsModalOpen(false);
   };
+
+  const handleEdit = report => {
+    setIsModalOpen(true);
+    setSelectedTransactionReport(report);
+  }
+
+  const handleDelete = report => {
+    setIsDeleteModalOpen(true);
+    setSelectedTransactionReport(report);
+  }
+  const handleCancelDelete = () => {
+    setSelectedTransactionReport(null);
+    setIsDeleteModalOpen(false);
+  };
+
+  const confirmDeleteEntity = () => {
+    dispatch(deleteEntity(selectedTransactionReport.id));
+    handleCancelDelete();
+  };
+
   const handlePagination = currentPage => {
-    console.log('currecntPage', currentPage);
     setPaginationState({
       ...paginationState,
       activePage: currentPage,
@@ -173,13 +197,17 @@ export const ChildTransactionReports = () => {
           </button>
         </div>
 
-        <AddTransactionReport isModalOpen={isModalOpen} handleCancel={handleCancel} currentLocale={currentLocale} saveEntity={saveEntity} />
+        <AddTransactionReport isModalOpen={isModalOpen} handleCancel={handleCancel} currentLocale={currentLocale} saveEntity={saveEntity} transactionReport={selectedTransactionReport}/>
+        <ChildTransactionsDeleteDialog isModalOpen={isDeleteModalOpen} handleCancel={handleCancelDelete} deleteEntity={confirmDeleteEntity} transactionReport={selectedTransactionReport}/>
       </div>
       <div className="table-responsive">
         {childTransactionReportList && childTransactionReportList.length > 0 ? (
           <Table responsive className="generalTable">
             <thead className="tableHeader">
               <tr>
+                <th className="hand">
+                  <Translate contentKey="kafalaApp.childTransactionReports.id">ID</Translate>
+                </th>
                 <th className="hand">
                   <Translate contentKey="kafalaApp.childTransactionReports.image">Transaction Image</Translate>
                 </th>
@@ -201,11 +229,13 @@ export const ChildTransactionReports = () => {
                 <th className="hand">
                   <Translate contentKey="kafalaApp.childTransactionReports.changeStatus">Change Status</Translate>
                 </th>
+                <th><Translate contentKey="kafalaApp.childTransactionReports.options">options</Translate></th>
               </tr>
             </thead>
             <tbody>
               {childTransactionReportList?.map((report, i) => (
                 <tr key={`entity-${i}`} data-cy="entityTable">
+                  <td>{report.id || '...'}</td>
                   <td>
                     {report.image ? (
                       <img style={{ width: '114px', height: '80px' }} src={report.image} alt="Transaction Image" />
@@ -239,6 +269,26 @@ export const ChildTransactionReports = () => {
                     >
                       <Translate contentKey="kafalaApp.childTransactionReports.changeStatus">Change Status</Translate>
                     </button>
+                  </td>
+                  <td>
+                    <Dropdown>
+                      <Dropdown.Toggle
+                        as="span"
+                        id="dropdown-basic"
+                        className="td-dots-button"
+                        style={{ cursor: 'pointer', display: 'inline-block', backgroundColor: 'transparent', border: 'none' }}
+                      >
+                        <img src="../../../content/images/dots-vertical.png" alt="dots" />
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item onClick={() => handleEdit(report)}>
+                          <Translate contentKey="kafalaApp.childTransactionReports.editTransaction">Edit Report</Translate>
+                        </Dropdown.Item>
+                          <Dropdown.Item style={{ color: 'red' }} onClick={() => handleDelete(report)}>
+                            <Translate contentKey="kafalaApp.childTransactionReports.deleteTransaction">Delete Report</Translate>
+                          </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
                   </td>
                 </tr>
               ))}

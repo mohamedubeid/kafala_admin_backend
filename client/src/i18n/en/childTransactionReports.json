@@ -12,7 +12,7 @@
       "updated": "A Child Transaction Report is updated with identifier {{ param }}",
       "deleted": "A Child Transaction Report is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Child Transaction Report {{ id }}?"
+        "question": "Are you sure you want to delete Child Transaction Report {{ id }}?" 
       },
       "detail": {
         "title": "Child Transaction Report"
@@ -26,6 +26,7 @@
       "desceription": "Desceription",
       "child": "Child",
       "add": "Add",
+      "edit": "Edit",
       "cancel": "Cancel",
       "description": "Description",
       "ACHEIVEMENT": "ACHEIVEMENT",
@@ -41,7 +42,10 @@
         "PENDING": "PENDING",
         "APPROVED": "APPROVED",
         "REJECTED": "REJECTED"
-      }
+      },
+      "options": "Options",
+      "editTransaction": "Edit Transaction",
+      "deleteTransaction": "Delet Transaction"
     }
   }
 }

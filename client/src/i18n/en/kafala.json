@@ -26,8 +26,8 @@
       "deleted": "Deleted successfully"
     },
     "childTransactionReports": {
-      "created": "A new Transaction Report has been created successfully",
-      "updated": "The Transaction Report has been updated successfully",
+      "created": "A new Transaction Report has been saved successfully",
+      "updated": "The Transaction Report has been saved successfully",
       "deleted": "The Transaction Report has been deleted successfully",
       "delete": {
         "question": "Are you sure you want to delete this report?"

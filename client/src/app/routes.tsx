@@ -18,10 +18,11 @@ import Child from './entities/child-extend';
 import ChildUpdate from './entities/child-extend/child-update';
 import Setting from './entities/setting-extend';
 import SettingUpdate from './entities/setting-extend/setting-update';
-import ChildTransactionReports from './entities/child-transaction-reports/child-transaction-reports';
 import ChildPrticipationsDeleteDialog from './entities/child-prticipations-extend/child-prticipations-delete-dialog';
 import ChildDeleteDialog from './entities/child-extend/child-delete-dialog';
 import RelChildKafeel from './entities/rel-child-kafeel-extended/rel-child-kafeel';
+import ChildTransactionReports from './entities/child-transaction-reports/child-transaction-reports';
+// import ChildTransactionsDeleteDialog from './entities/child-transaction-reports/modals/child-transaction-delete-dialog';
 
 const loading = <div>loading ...</div>;
 
@@ -105,6 +106,14 @@ const AppRoutes = () => {
             </PrivateRoute>
           }
         />
+        {/* <Route
+          path="/child-transaction-reports/:id/delete"
+          element={
+            <PrivateRoute hasAnyAuthorities={[AUTHORITIES.ADMIN]}>
+              <ChildTransactionsDeleteDialog />
+            </PrivateRoute>
+          }
+        /> */}
         <Route
           path="/child/new"
           element={
