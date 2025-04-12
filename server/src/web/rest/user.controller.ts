@@ -99,7 +99,10 @@ export class UserController {
     description: 'The record has been successfully updated.',
     type: UserDTO,
   })
-  async updateUser(@Req() req: Request, @Body() userDTO: UserDTO): Promise<UserDTO> {
+  async updateUser(@Req() req: Request, @Body() userDTO: UserDTO & { password: string }): Promise<UserDTO> {
+    if (!userDTO.password || userDTO.password.trim() === '') {
+      delete userDTO.password;
+    }
     const userOnDb = await this.userService.find({ where: { login: userDTO.login } });
     let updated = false;
     if (userOnDb && userOnDb.id) {

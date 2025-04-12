@@ -73,7 +73,7 @@ export class UserService {
   }
 
   async update(userDTO: UserDTO, updater?: string): Promise<UserDTO | undefined> {
-    return this.save(userDTO, updater);
+    return this.save(userDTO, updater, true);
   }
 
   async delete(userDTO: UserDTO): Promise<UserDTO | undefined> {

@@ -4,6 +4,7 @@ import { Button, Row, Col, FormText } from 'reactstrap';
 import { Translate, translate, ValidatedField, ValidatedForm, isEmail } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast } from 'react-toastify';
+import PasswordStrengthBar from 'app/shared/layout/password/password-strength-bar';
 
 import { locales, languages } from 'app/config/translation';
 import { getUser, getRoles, updateUser, createUser, reset, getUsersAsAdmin } from './user-management.reducer';
@@ -16,6 +17,13 @@ export const UserManagementUpdate = () => {
   const { login } = useParams<'login'>();
   const isNew = login === undefined;
   const currentLocale = useAppSelector(state => state.locale.currentLocale);
+
+  const [password, setPassword] = useState('');
+
+  const updatePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
+
 
   useEffect(() => {
     if (isNew) {
@@ -127,7 +135,7 @@ export const UserManagementUpdate = () => {
               /> */}
               <ValidatedField
                 name="email"
-                disabled
+                disabled={!isNew}
                 label={translate('global.form.email.label')}
                 type="email"
                 className="text-start"
@@ -197,6 +205,15 @@ export const UserManagementUpdate = () => {
                   },
                 }}
               />
+              <ValidatedField
+                name="password"
+                label={translate('global.form.newpassword.label')}
+                placeholder={translate('global.form.newpassword.placeholder')}
+                type="password"
+                onChange={updatePassword}
+                data-cy="password"
+              />
+              <PasswordStrengthBar password={password} />
               {/* <FormText>This field cannot be longer than 50 characters.</FormText> */}
               <ValidatedField
                 type="checkbox"
@@ -213,7 +230,7 @@ export const UserManagementUpdate = () => {
                   </option>
                 ))}
               </ValidatedField>
-              <ValidatedField disabled type="select" name="authorities" multiple label={translate('userManagement.profiles')}>
+              <ValidatedField disabled={!isNew} type="select" name="authorities" multiple label={translate('userManagement.profiles')}>
                 {authorities.map(role => (
                   <option value={role} key={role}>
                     {role}
