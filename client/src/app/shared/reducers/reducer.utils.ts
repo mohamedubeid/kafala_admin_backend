@@ -52,6 +52,7 @@ export type IChildQueryParams = {
   dateFrom?: string;
   dateTo?: string;
   status?: ChildStatus;
+  createdBy?: string;
 };
 
 /**

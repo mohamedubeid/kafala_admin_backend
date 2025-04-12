@@ -441,6 +441,7 @@ END
         'child.familyName',
         'child.createdDate',
         'child.status',
+        'child.createdBy',
         'childSponsorShip.id',
         'childSponsorShip.name',
         'childSponsorShip.minimumCost',

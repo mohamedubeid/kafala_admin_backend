@@ -167,6 +167,8 @@ export class ChildExtendedController {
     const dateFrom = req?.query?.dateFrom;
     const dateTo = req?.query?.dateTo;
     const status = req?.query?.status;
+    const createdBy = req?.query?.createdBy;
+
     const { data, count } = await this.childExtendedService.getAdminChilds(
       pageRequest,
       name,
@@ -176,8 +178,8 @@ export class ChildExtendedController {
       orphanClassification,
       dateFrom,
       dateTo,
-      '',
-      status
+      createdBy,
+      status,
     );
     HeaderUtil.addPaginationHeaders(req.res, new Page(data, count, pageRequest));
     return data;

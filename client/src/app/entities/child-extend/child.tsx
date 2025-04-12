@@ -83,6 +83,9 @@ export const Child = (props: any) => {
   const [dateTo, setDateTo] = useState<string>('');
   const [dataImported, setDataImported] = useState(false);
 
+  //created by filter
+  const [createdBy, setCreatedBy] = useState<string | null>(null);
+
   // status filter
   const [status, setStatus] = useState(translate('kafalaApp.child.All'));
   const [statusKey, setStatusKey] = useState<ChildStatus | null>();
@@ -174,6 +177,7 @@ export const Child = (props: any) => {
         dateFrom: dateFrom || '',
         dateTo: dateTo || '',
         status: statusKey || null,
+        createdBy: createdBy || ''
       };
   
       dispatch(createUpdateEntity({ entity: updatedChild, queryParams }));
@@ -288,6 +292,7 @@ export const Child = (props: any) => {
         dateFrom: dateFrom || '',
         dateTo: dateTo || '',
         status: statusKey || null,
+        createdBy: createdBy || ''
       }),
     );
   };
@@ -306,6 +311,7 @@ export const Child = (props: any) => {
           dateFrom: dateFrom || '',
           dateTo: dateTo || '',
           status: statusKey || null,
+          createdBy: createdBy || ''
         }),
       );
 
@@ -393,7 +399,8 @@ export const Child = (props: any) => {
     dateFrom,
     dateTo,
     updateSuccess,
-    statusKey
+    statusKey,
+    createdBy
   ]);
   useEffect(() => {
     setName('');
@@ -421,6 +428,7 @@ export const Child = (props: any) => {
     dateFrom,
     dateTo,
     statusKey,
+    createdBy
   ]);
 
   useEffect(() => {
@@ -428,7 +436,7 @@ export const Child = (props: any) => {
       ...paginationState,
       activePage: 1,
     });
-  }, [name, sponsershipType, orphanClassification, ageRange, dateFrom, dateTo, statusKey]);
+  }, [name, sponsershipType, orphanClassification, ageRange, dateFrom, dateTo, statusKey, createdBy]);
 
   function filter() {
     let endURL = `?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`;
@@ -448,6 +456,10 @@ export const Child = (props: any) => {
       endURL += `&status=${statusKey}`;
     }
 
+    if (createdBy && createdBy.length > 0) {
+      endURL += `&createdBy=${createdBy}`;
+    }
+
     if (pageLocation.search !== endURL) {
       navigate(`${pageLocation.pathname}${endURL}`);
       dispatch(
@@ -463,6 +475,7 @@ export const Child = (props: any) => {
           dateFrom: dateFrom || '',
           dateTo: dateTo || '',
           status: statusKey || null,
+          createdBy: createdBy || '',
         }),
       );
     }
@@ -526,6 +539,7 @@ export const Child = (props: any) => {
             dateFrom: dateFrom || '',
             dateTo: dateTo || '',
             status: statusKey || null,
+            createdBy: createdBy || ''
           }),
         );
   };
@@ -1229,6 +1243,16 @@ export const Child = (props: any) => {
             placeholder={translate('kafalaApp.child.searchByName')}
           />
         </div>
+        <div className="filter-item">
+          <img src="../../../content/images/searchIcon.png" alt="search icon" />
+          <input
+            onChange={e => {
+              setCreatedBy(e.target.value);
+            }}
+            className="search-input"
+            placeholder={translate('kafalaApp.child.searchByCreatedBy')}
+          />
+        </div>
         <div className="dropdownFilter">
           <AntdDropdown
             menu={{
@@ -1354,6 +1378,9 @@ export const Child = (props: any) => {
                   <Translate contentKey="kafalaApp.child.collectedUntilNow">Collected Until Now</Translate>
                 </th>
                 <th className="hand">
+                  <Translate contentKey="kafalaApp.child.createdBy">Created By</Translate>
+                </th>
+                <th className="hand">
                   <Translate contentKey="kafalaApp.child.sponsorshipName">Sponsorship Name</Translate>
                 </th>
                 <th className="hand" onClick={sort('status')}>
@@ -1406,6 +1433,7 @@ export const Child = (props: any) => {
                   <td>{child?.childSponsorShip?.minimumCost}</td>
                   <td>{child?.score}</td>
                   <td>{child?.totalCost}</td>
+                  <td>{child?.createdBy}</td>
                   <td>{child?.childSponsorShip?.name ? child?.childSponsorShip?.name : '...'}</td>
                   <td>{translate(`kafalaApp.ChildStatus.${child.status}`)}</td>
                   <td className="nowrap">

@@ -59,6 +59,8 @@
       "cost": "مبلغ الكفالة سنوياً",
       "collectedUntilNow": "المجمع حتي الان",
       "sponsorshipName": "اسم الجمعية",
+      "createdBy": "تم الإنشاء بواسطة",
+      "searchByCreatedBy": "البحث بواسطة المنشئ",
       "sponsorshipType": "نوع الكفالة",
       "psychologist": "أ.خ نفسي",
       "healthSpecilaist": "أ.خ صحي",

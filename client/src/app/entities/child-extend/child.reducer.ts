@@ -47,8 +47,8 @@ export const importChilds = createAsyncThunk(
 
 export const getEntities = createAsyncThunk(
   'child/fetch_entity_list',
-  async ({ sort, name, page, size, sponsershipType, orphanClassification, ageFrom, ageTo, dateFrom, dateTo, status }: IChildQueryParams) => {
-    const requestUrl = `${apiUrlV2}/admin/getChilds?${sort ? `sort=${sort}&` : ''}${name ? `name=${name}&` : ''}${sponsershipType ? `sponerShipType=${sponsershipType}&` : ''}${orphanClassification ? `orphanClassification=${orphanClassification}&` : ''}${ageFrom !== undefined ? `ageFrom=${ageFrom}&` : ''}${ageTo !== undefined ? `ageTo=${ageTo}&` : ''}${dateFrom ? `dateFrom=${dateFrom}&` : ''}${dateTo ? `dateTo=${dateTo}&` : ''}${page !== undefined ? `page=${page}&` : ''}${size !== undefined ? `size=${size}&` : ''}${status ? `status=${status}&` : ''}cacheBuster=${new Date().getTime()}`;
+  async ({ sort, name, page, size, sponsershipType, orphanClassification, ageFrom, ageTo, dateFrom, dateTo, status, createdBy }: IChildQueryParams) => {
+    const requestUrl = `${apiUrlV2}/admin/getChilds?${sort ? `sort=${sort}&` : ''}${name ? `name=${name}&` : ''}${sponsershipType ? `sponerShipType=${sponsershipType}&` : ''}${orphanClassification ? `orphanClassification=${orphanClassification}&` : ''}${ageFrom !== undefined ? `ageFrom=${ageFrom}&` : ''}${ageTo !== undefined ? `ageTo=${ageTo}&` : ''}${dateFrom ? `dateFrom=${dateFrom}&` : ''}${dateTo ? `dateTo=${dateTo}&` : ''}${page !== undefined ? `page=${page}&` : ''}${size !== undefined ? `size=${size}&` : ''}${createdBy ? `createdBy=${createdBy}&` : ''}${status ? `status=${status}&` : ''}cacheBuster=${new Date().getTime()}`;
 
     const response = await axios.get<IChild[]>(requestUrl);
     return {
@@ -61,8 +61,8 @@ export const getEntities = createAsyncThunk(
 
 export const getExportedChildsData = createAsyncThunk(
   'child/get_exported_child_Data',
-  async ({ sort, name, page, size, sponsershipType, orphanClassification, ageFrom, ageTo, dateFrom, dateTo, status }: IChildQueryParams) => {
-    const requestUrl = `${apiUrlV2}/admin/getExportedChildData?${sort ? `sort=${sort}&` : ''}${name ? `name=${name}&` : ''}${sponsershipType ? `sponerShipType=${sponsershipType}&` : ''}${orphanClassification ? `orphanClassification=${orphanClassification}&` : ''}${ageFrom !== undefined ? `ageFrom=${ageFrom}&` : ''}${ageTo !== undefined ? `ageTo=${ageTo}&` : ''}${dateFrom ? `dateFrom=${dateFrom}&` : ''}${dateTo ? `dateTo=${dateTo}&` : ''}${page !== undefined ? `page=${page}&` : ''}${size !== undefined ? `size=${size}&` : ''}${status ? `status=${status}&` : ''}cacheBuster=${new Date().getTime()}`;
+  async ({ sort, name, page, size, sponsershipType, orphanClassification, ageFrom, ageTo, dateFrom, dateTo, status, createdBy }: IChildQueryParams) => {
+    const requestUrl = `${apiUrlV2}/admin/getExportedChildData?${sort ? `sort=${sort}&` : ''}${name ? `name=${name}&` : ''}${sponsershipType ? `sponerShipType=${sponsershipType}&` : ''}${orphanClassification ? `orphanClassification=${orphanClassification}&` : ''}${ageFrom !== undefined ? `ageFrom=${ageFrom}&` : ''}${ageTo !== undefined ? `ageTo=${ageTo}&` : ''}${dateFrom ? `dateFrom=${dateFrom}&` : ''}${dateTo ? `dateTo=${dateTo}&` : ''}${page !== undefined ? `page=${page}&` : ''}${size !== undefined ? `size=${size}&` : ''}${createdBy ? `createdBy=${createdBy}&` : ''}${status ? `status=${status}&` : ''}cacheBuster=${new Date().getTime()}`;
 
     const response = await axios.get<IChild[]>(requestUrl);
     return {

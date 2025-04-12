@@ -60,6 +60,8 @@
       "cost": "Cost Yealy",
       "collectedUntilNow": "Collected Until Now",
       "sponsorshipName": "Sponsorship Name",
+      "createdBy": "Created By",
+      "searchByCreatedBy": "Search by Created By",
       "sponsorshipType": "Sponsorship Type",
       "psychologist": "Psychologist",
       "healthSpecilaist": "Health Specilaist",
