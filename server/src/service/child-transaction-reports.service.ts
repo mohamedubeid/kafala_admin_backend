@@ -97,6 +97,7 @@ export class ChildTransactionReportsExtendedService {
   ) {
     const queryBuilder = this.childTransactionReportsRepository
       .createQueryBuilder('child-transaction-report')
+      .leftJoinAndSelect('child-transaction-report.child', 'child')
       .orderBy('child-transaction-report.id', 'DESC')
       .where("child-transaction-report.status = 'APPROVED'");
     if (!isNaN(pageRequest.size) && pageRequest.size > 0) {

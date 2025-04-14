@@ -112,7 +112,7 @@ export class ChildTransactionReportsExtendedController {
     description: 'List all records',
     type: ChildTransactionReportsDTO,
   })
-  async getWebTransactionReports(@Req() req: Request): Promise<ChildTransactionReportsDTO[]> {
+  async getWebTransactionReports(@Req() req: Request): Promise<{data: ChildTransactionReportsDTO[], count: number}> {
     const pageRequest: PageRequest = new PageRequest(
       req.query.page ? req.query.page : req.query.page,
       req.query.size ? req.query.size : req.query.size,
@@ -120,7 +120,10 @@ export class ChildTransactionReportsExtendedController {
     );
     const { childTransactionReports, count } = await this.childTransactionReportsExtendedService.transactionReports(pageRequest);
     HeaderUtil.addPaginationHeaders(req.res, new Page(childTransactionReports, count, pageRequest));
-    return childTransactionReports;
+    return {
+      data: childTransactionReports,
+      count,
+    };
   }
 
   @Get('/:id')
