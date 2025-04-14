@@ -92,6 +92,20 @@ export class ChildTransactionReportsExtendedService {
     return { childTransactionReports, count };
   }
 
+  async transactionReports(
+    pageRequest: PageRequest, 
+  ) {
+    const queryBuilder = this.childTransactionReportsRepository
+      .createQueryBuilder('child-transaction-report')
+      .orderBy('child-transaction-report.id', 'DESC')
+      .where("child-transaction-report.status = 'APPROVED'");
+    if (!isNaN(pageRequest.size) && pageRequest.size > 0) {
+      queryBuilder.skip(pageRequest.page * pageRequest.size).take(pageRequest.size);
+    }
+    const [childTransactionReports, count] = await queryBuilder.getManyAndCount();
+    return { childTransactionReports, count };
+  }
+
   async findByFields(options: FindOneOptions<ChildTransactionReportsDTO>): Promise<ChildTransactionReportsDTO | undefined> {
     const result = await this.childTransactionReportsRepository.findOne(options);
     return ChildTransactionReportsMapper.fromEntityToDTO(result);

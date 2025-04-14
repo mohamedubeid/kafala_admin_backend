@@ -22,7 +22,6 @@ import { Page, PageRequest } from '../../domain/base/pagination.entity';
 import { ChildTransactionReportsDTO } from '../../service/dto/child-transaction-reports.dto';
 
 @Controller('api/v2/child-transaction-reports')
-@UseGuards(AuthGuard, RolesGuard)
 @UseInterceptors(LoggingInterceptor, ClassSerializerInterceptor)
 @ApiBearerAuth()
 @ApiTags('child-transaction-reports')
@@ -32,6 +31,7 @@ export class ChildTransactionReportsExtendedController {
   constructor(private readonly childTransactionReportsExtendedService: ChildTransactionReportsExtendedService) {}
 
   @PostMethod('/')
+  @UseGuards(AuthGuard, RolesGuard)
   @Roles(RoleType.ADMIN)
   @ApiOperation({ summary: 'Create childTransactionReports' })
   @ApiResponse({
@@ -46,6 +46,8 @@ export class ChildTransactionReportsExtendedController {
     return created;
   }
   @Get('/')
+  @UseGuards(AuthGuard, RolesGuard)
+
   @Roles(RoleType.ADMIN)
   @ApiResponse({
     status: 200,
@@ -64,6 +66,8 @@ export class ChildTransactionReportsExtendedController {
   }
 
   @Get('/web/:childId')
+  @UseGuards(AuthGuard, RolesGuard)
+
   @Roles(RoleType.GUARANTOR)
   @ApiResponse({
     status: 200,
@@ -81,6 +85,7 @@ export class ChildTransactionReportsExtendedController {
   }
 
   @Get('/admin/:childId')
+  @UseGuards(AuthGuard, RolesGuard)
   @Roles(RoleType.ADMIN)
   @ApiResponse({
     status: 200,
@@ -101,7 +106,25 @@ export class ChildTransactionReportsExtendedController {
     return childTransactionReports;
   }
 
+  @Get('/web')
+  @ApiResponse({
+    status: 200,
+    description: 'List all records',
+    type: ChildTransactionReportsDTO,
+  })
+  async getWebTransactionReports(@Req() req: Request): Promise<ChildTransactionReportsDTO[]> {
+    const pageRequest: PageRequest = new PageRequest(
+      req.query.page ? req.query.page : req.query.page,
+      req.query.size ? req.query.size : req.query.size,
+      req.query.sort,
+    );
+    const { childTransactionReports, count } = await this.childTransactionReportsExtendedService.transactionReports(pageRequest);
+    HeaderUtil.addPaginationHeaders(req.res, new Page(childTransactionReports, count, pageRequest));
+    return childTransactionReports;
+  }
+
   @Get('/:id')
+  @UseGuards(AuthGuard, RolesGuard)
   @Roles(RoleType.ADMIN)
   @ApiResponse({
     status: 200,
@@ -112,6 +135,7 @@ export class ChildTransactionReportsExtendedController {
     return await this.childTransactionReportsExtendedService.findById(id);
   }
   @Delete('/:id')
+  @UseGuards(AuthGuard, RolesGuard)
   @Roles(RoleType.ADMIN)
   @ApiOperation({ summary: 'Delete childTransactionReports' })
   @ApiResponse({
