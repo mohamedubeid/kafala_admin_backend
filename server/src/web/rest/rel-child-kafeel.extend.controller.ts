@@ -28,6 +28,9 @@ import { RelChildKafeelExtendedDTO } from '../../service/dto/rel-child-kafeel.ex
 import { RelChildKafeelStatus } from '../../domain/enumeration/rel-child-kafeel-status';
 import { Page, PageRequest } from '../../domain/base/pagination.entity';
 import { ILike } from 'typeorm';
+import { TweetSMSService } from '../../service/tweetsms.service';
+import { MailService } from '../../service/mail.service';
+import { isEmail } from 'class-validator';
 
 @Controller('api/v2/rel-child-kafeels')
 @UseGuards(AuthGuard, RolesGuard)
@@ -40,6 +43,9 @@ export class RelChildKafeelExtendedController {
   constructor(
     private readonly relChildKafeelExtendedService: RelChildKafeelExtendedService,
     private readonly kafeelService: KafeelService,
+    private readonly tweetSMSService: TweetSMSService,
+    private mailService: MailService,
+    
   ) {}
 
   @PostMethod('/')
@@ -207,6 +213,23 @@ export class RelChildKafeelExtendedController {
   })
   async putId(@Req() req: Request, @Body() relChildKafeelDTO: RelChildKafeelDTO): Promise<RelChildKafeelDTO> {
     HeaderUtil.addEntityCreatedHeaders(req.res, 'RelChildKafeel', relChildKafeelDTO.id);
+    const existRelChildKafeel = await this.relChildKafeelExtendedService.findById(relChildKafeelDTO.id);
+    if(existRelChildKafeel.status != relChildKafeelDTO.status) {
+      if(relChildKafeelDTO.status == 'ACCEPTED') {
+        if(isEmail(relChildKafeelDTO.kafeel.user.email)) {
+          await this.mailService.sendEmail(relChildKafeelDTO, 'sponsor');
+        }
+        if(relChildKafeelDTO.child.createdBy != 'admin' && isEmail(relChildKafeelDTO.child.createdBy)) {
+          await this.mailService.sendEmail(relChildKafeelDTO, 'guardian');
+        }
+      } else if(relChildKafeelDTO.status == 'REJECTED') {
+        if(isEmail(relChildKafeelDTO.kafeel.user.email)) {
+          await this.mailService.sendEmail(relChildKafeelDTO, 'sponsor');
+        }
+      }
+    }
+
+    // await this.tweetSMSService.sendSMS('00000000', 'Hi mohamed')
     return await this.relChildKafeelExtendedService.update(relChildKafeelDTO, req.user?.login);
   }
 }

@@ -1,6 +1,8 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
 import { User } from '../domain/user.entity';
+import { RelChildKafeelDTO } from './dto/rel-child-kafeel.dto';
+import dayjs from 'dayjs';
 
 @Injectable()
 export class MailService {
@@ -52,5 +54,33 @@ export class MailService {
       })
       .then(res => 'sucess')
       .catch(err => 'error');
+  }
+
+  async sendEmail(relChildKafeelDTO: RelChildKafeelDTO, userType: 'sponsor' | 'guardian') {
+
+    const today = new Date().toISOString();
+    const formatted = dayjs().format('DD MMMM YYYY');;
+    await this.mailerService
+      .sendMail({
+        to: userType == 'sponsor' ? relChildKafeelDTO.kafeel.user.email : relChildKafeelDTO.child.createdBy,
+        from: process.env.MAIL_FROM,
+        subject: 'كفالة غزة',
+        template: '../templates/mails/sponsorAr.ejs',
+        context: {
+          userName: userType == 'sponsor' ? relChildKafeelDTO.kafeel.user.firstName : relChildKafeelDTO.child.createdBy,
+          amount: relChildKafeelDTO.cost,
+          childName: relChildKafeelDTO.child.familyName + ' ' + relChildKafeelDTO.child.fatherName +  ' ' + relChildKafeelDTO.child.familyName,
+          date: formatted,
+          status: relChildKafeelDTO.status, //ACCEPTED | REJECTED
+          userType //sponsor | guardian
+        },
+      })
+      .then(() => {
+        console.log('success');
+      })
+      .catch(err => {
+        console.log('error');
+        console.log(err);
+      });
   }
 }

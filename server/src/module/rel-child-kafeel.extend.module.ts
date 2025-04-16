@@ -5,11 +5,12 @@ import { RelChildKafeelExtendedController } from '../web/rest/rel-child-kafeel.e
 import { RelChildKafeelExtendedService } from '../service/rel-child-kafeel.extend.service';
 import { KafeelRepository } from '../repository/kafeel.repository';
 import { KafeelService } from '../service/kafeel.service';
+import { TweetSMSService } from '../service/tweetsms.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([RelChildKafeelRepository,KafeelRepository])],
   controllers: [RelChildKafeelExtendedController],
-  providers: [RelChildKafeelExtendedService,KafeelService],
-  exports: [RelChildKafeelExtendedService,KafeelService],
+  providers: [RelChildKafeelExtendedService,KafeelService, TweetSMSService],
+  exports: [RelChildKafeelExtendedService,KafeelService, TweetSMSService],
 })
 export class RelChildKafeelExtendedExtendedModule {}
