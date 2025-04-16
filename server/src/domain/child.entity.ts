@@ -13,6 +13,7 @@ import { Gender } from './enumeration/gender';
 
 import { User } from './user.entity';
 import { ChildStatus } from './enumeration/child-status';
+import { ChildTransactionReports } from './child-transaction-reports.entity';
 
 /**
  * A Child.
@@ -85,6 +86,9 @@ export class Child extends BaseEntity {
 
   @OneToMany(type => ChildPrticipations, other => other.child)
   childPrticipations: ChildPrticipations[];
+
+  @OneToMany(type => ChildTransactionReports, other => other.child)
+  childTransactions: ChildTransactionReports[];
 
   @OneToOne(() => ChildHealthStatus, childHealthStatus => childHealthStatus.child)
   childHealthStatus: ChildHealthStatus;

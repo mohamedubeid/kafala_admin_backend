@@ -13,6 +13,7 @@ import { ChildSponsorShipDTO } from './child-sponsor-ship.dto';
 
 import { UserDTO } from './user.dto';
 import { ChildStatus } from '../../domain/enumeration/child-status';
+import { ChildTransactionReportsDTO } from './child-transaction-reports.dto';
 
 /**
  * A ChildDTO object.
@@ -83,6 +84,9 @@ export class ChildDTO extends BaseDTO {
 
   @ApiProperty({ type: () => ChildPrticipationsDTO, isArray: true, description: 'childPrticipations relationship' })
   childPrticipations: ChildPrticipationsDTO[];
+
+  @ApiProperty({ type: () => ChildTransactionReportsDTO, isArray: true, description: 'childTransactions relationship' })
+  childTransactions: ChildTransactionReportsDTO[];
 
   @ApiProperty({ type: () => ChildHealthStatusDTO, description: 'childHealthStatus relationship' })
   childHealthStatus: ChildHealthStatusDTO;

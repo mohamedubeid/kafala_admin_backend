@@ -688,6 +688,7 @@ END
       childNotes: [],
       relChildKafeels: [],
       childPrticipations: [],
+      childTransactions: [],
       childHealthStatus: new ChildHealthStatusDTO(),
       childMaritalStatus: new ChildMaritalStatusDTO(),
       childEducationStatus: new ChildEducationStatusDTO(),

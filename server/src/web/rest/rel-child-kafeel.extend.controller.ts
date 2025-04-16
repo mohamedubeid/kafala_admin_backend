@@ -214,6 +214,7 @@ export class RelChildKafeelExtendedController {
   async putId(@Req() req: Request, @Body() relChildKafeelDTO: RelChildKafeelDTO): Promise<RelChildKafeelDTO> {
     HeaderUtil.addEntityCreatedHeaders(req.res, 'RelChildKafeel', relChildKafeelDTO.id);
     const existRelChildKafeel = await this.relChildKafeelExtendedService.findById(relChildKafeelDTO.id);
+    //send email notification 
     if(existRelChildKafeel.status != relChildKafeelDTO.status) {
       if(relChildKafeelDTO.status == 'ACCEPTED') {
         if(isEmail(relChildKafeelDTO.kafeel.user.email)) {
